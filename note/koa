@@ -1,0 +1,63 @@
+
+
+KOA
+
+1.首先关于跨域
+    目前在实验的情况下不支持 cors 需要  koa-cors 这个中间件
+        1.npm i koa-cors
+        2.在 app.js 中 const cors = require('koa-cors')
+        3.app.use(cors()) 这个就是允许任何来源进行跨域访问了
+        4.第三步中那些允许访问的来源，或者方法那些和 cors 差不多，只是名字不一样，具体看 koa-cors 官网
+
+2.关于koa的路由（支持动态路由，和vue写法差不多，通过 ctx.params 获取）
+    1.npm i koa-router (如果是用骨架生成，会自动安装的)
+    2.let router = require('koa-router')(); 这个就是路由了
+    3.假设我们 router.get('/yo', async (ctx,next) => {
+        ctx.request.query   ctx.request.body   //这两个就是我们 get 或者 post 请求过来的信息
+        ctx.body = '我是返回回去的信息'  //这个就是返回数据的方法
+    })
+    4.module.exports = router //导出我们的路由
+    5.在 app.js 中
+        1.let index = require('./xxxx') //引入第四步导出的路由模块
+        2.app.use(index.routes(),index.allowedMethods())  //这一步我们的路由就已经OK了 注：app不可以使用嵌套路由的写法
+
+3.关于koa的路由嵌套
+    1.下面这个就是简单的路由嵌套
+    var forums = new Router();
+    var posts = new Router();
+    posts.get('/', (ctx, next) => {...});
+    posts.get('/:pid', (ctx, next) => {...});
+    forums.use('/forums/:fid/posts', posts.routes(), posts.allowedMethods());
+
+5.关于koa的路由传参
+    router.get('user', '/users/:id', (ctx, next) => {
+        // ...
+    });
+ 
+    router.url('user', 3);
+    // => "/users/3"
+ 
+    router.url('user', { id: 3 });
+    // => "/users/3"
+ 
+    router.use((ctx, next) => {
+        // redirect to named route
+        ctx.redirect(ctx.router.url('sign-in'));
+    })
+ 
+    router.url('user', { id: 3 }, { query: { limit: 1 } });
+    // => "/users/3?limit=1"
+ 
+    router.url('user', { id: 3 }, { query: "limit=1" });
+    // => "/users/3?limit=1"
+
+
+4.关于koa的路由前缀
+    1.第一种
+    var router = new Router({
+    prefix: '/users'
+    });
+    router.get('/:id', ...); // responds to "/users/:id"
+    2.第二种
+    router.prefix("/api/customer"); 
+
