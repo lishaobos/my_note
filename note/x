@@ -513,6 +513,8 @@ git的安装和使用
             1.git add read.txt 或者 git add
             2.git status (看我们的修改状态)
             3.git commit -m '内容' 引号里面写修改的注释
+      6.git remote add origin git@github.com:lishaobos/qqq.git (添加远程仓库
+      7.git push -u origin master (上面命令将本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了)
 4.一些常用的命令
 git diff read.txt (这个是看修改的具体内容)
 git log (可以看我们的修改日志)
@@ -523,3 +525,4 @@ git branch  (这个是看我们所有的分支)
 git checkout -b xx  (xx是分支名字，语句的mean创建加切换)
 git checkout master (选中主分支)
 git merge xx (先选中主分支，然后执行就是合并分支，xx为分支名字)
+git pull (拉取远程仓库，并且跟新本地)
