@@ -115,3 +115,19 @@
     https://www.zhihu.com/question/34183746
     https://www.cnblogs.com/libin-1/p/6014925.html
 
+
+
+***关于Object.defineProperty(obj,'yo',{ // obj是定义的对象，yo是属性
+    set(e){
+        // 当 obj.yo = anythine 就会进来这个函数，e 是我们修改的 obj对象的yo属性的值
+    },
+    get(){
+        // 当 obj.yo  就会进来这个函数
+    },
+    value:'xxx', // 这个就是我们定义的 yo 属性的值
+    enumerable: false // 这个是 false 就是代表不可枚举, true 就是代表可枚举
+    configurable: false //如果为false,就不能设置他的value
+})
+    1.对象的可枚举属性和不可枚举属性的区别
+        1.可枚举属性就是我们 for in 循环可以打印出来的属性
+        2.不可枚举属性我们在对象中可以使用，也可以看见，但是 for in 循环是打印不出来这个属性的
