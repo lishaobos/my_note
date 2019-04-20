@@ -22,7 +22,7 @@ KOA
         2.app.use(index.routes(),index.allowedMethods())  //这一步我们的路由就已经OK了 注：app不可以使用嵌套路由的写法
 
 3.关于koa的路由嵌套
-    1.下面这个就是简单的路由嵌套
+    1.下面这个就是简单的路由嵌套 (ctx.parmas //获取动态路由)
     var forums = new Router();
     var posts = new Router();
     posts.get('/', (ctx, next) => {...});
