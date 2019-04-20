@@ -702,3 +702,68 @@ let store = new vuex.Store({
         }
     3.在页面中 <div> {{ getMes }} </div>  //这就可以展示信息
 注：计算属性里面不能放 mapActions ,这个放在 methods 里面就行了
+
+
+
+
+  对于组件的懒加载，有好几种方式
+  1.import（这种方式会把每个组件都分成一个js文件模块）
+    component: () => import ('./components/......')
+  2.webpack推荐（这种写法最后一个参数，如果有组件一样，那么这两个组件就会打包成一个js文件，如果都不一样，就和第一个方法是一样的）
+    component: (resolve) => require.ensure([],() => resolve(require('./components/......')),'xx')
+
+对于vue 父组件调用子组件的 methods
+  例如：<children ref="ccc" /> //这个是引入的子组件
+        然后在父组件中 this.$refs.ccc.yo() 就ok了 yo是子组件的方法
+子组件调用父组件的方法
+  在子组件中 this.$parent.father()   father是父组件的方法
+
+//下面这个方法里面是一个回调函数，意思是在dom渲染完成之后，我们在回调函数中执行我们想要做的事情
+this.$nextTick( () => {
+
+} )
+
+对于 ref 
+1.如果绑定的是普通元素
+  例：<div ref="yo" />
+      this.$refs.yo 指向的就是这个元素
+2.如果绑定的是引入的子组件
+  例：<zzz ref="yo" />
+      this.$refs.yo指向的就是这个子组件本身，我们也可以调用它的方法（this.$refs.yo.method()）
+3.关于 ref 注册时间的重要说明
+  因为 ref 本身是作为渲染结果被创建的，在初始创建的时候不能访问他们，他们还不存在，$refs也不是响应式的，因此也不能做数据绑定
+  **
+  有时候我们调用 this.$refs 发现没有拿到想要的数据，所以：
+      this.$nextTick( ()=> {
+        this.$refs.xxxxx   //这里我们就可以拿到我们想要的
+      })
+  **
+
+对于 filter
+  例如：
+    var arr = [1,2,3];
+    arr.filter((a,b,c) => {
+      //a参数是数组的每一条数据
+      //下面这种没有if条件，他也可以帮你检索每一条中 大于 2 的，不会改变原来的数组
+      return a>2
+    })
+
+对于 sort（js提供的数组排序方法）
+    例如：
+      var arr = [];
+      arr.sort((a,b)=>{
+        return a-b //这个 a-b 和 b-a 只是返回的数组排序顺序不一样
+      })
+    若是数组对象：
+      var arr = [{
+        num:1
+      },
+      {
+        num:2
+      }
+      {
+        num:-1
+      }]
+      arr.sort((a,b)=>{
+        return a.num - b.num //这个和上面同理，只是根据数组里面的对象属性排序
+      })
