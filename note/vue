@@ -430,7 +430,21 @@ this.mes.filter(function(m){
 // export与export default均可用于导出常量、函数、文件、模块等
 // 在一个文件或模块中，export、import可以有多个，export default仅有一个
 // 通过export方式导出，在导入时要加{ } 这个大括号可以写多个,export default则不需要
-// export能直接导出变量表达式，export default不行。
+// export能直接导出变量表达式，export 
+续：
+// 假设我在 a.js export default 'haha'
+   在其他页面中的引用方法（下面是针对 导出default 不是单纯的 export）
+      1.import snake from './a.js'
+      2.import defaultExport from './a.js' //这个是导出 default 默认模块
+      3.import {default as snake} from './a,js' //这个有一丝日鬼
+      4.export {default as snake} from './a,js' //这个可以直接引入并且导出
+//假设在main.js 
+  1.import './a.css' //这个也可以直接引入css
+  2.import ('./a.css') //这个也ok
+  3.let module = await import ('./a.css') //支持 await
+  4.import ('./a.css').then(_ => { //支持then
+    do something
+  })
 
 写一个 export 导出函数的感觉
 1.在接口文件导出
