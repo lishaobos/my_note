@@ -816,5 +816,26 @@ this.$nextTick( () => {
                   age: 27,
                   name: 'yo man'
             })
+            
+对于Vue的provide
+   例子：export default {
+            name:'我是爸爸',
+            provide(){
+               return {
+                  yo:this.xxx //data里面的属性，或者函数其他的
+               }
+            }
+         }
+         export default {
+            name:'我是儿子',
+            inject:['yo'] //这个就是爸爸的东西
+         }
+         export default {
+            name:'我是孙子',
+            inject:['yo'] //这个就是爷爷的东西
+         }
+     ***总结  
+          对于更深层次的孙子组件那些，这样可以访问到顶上组件的参数
+         
         
       
