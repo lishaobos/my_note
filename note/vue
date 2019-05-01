@@ -651,11 +651,13 @@ const store = new Vuex.Store({
       return state.todos.filter(todo => todo.done)
     }
   },
+  //mutaions里面必须是同步函数 this.$store.commit('xxx')可以触发
   mutaions:{
     increment (state, payload) {//第一个是咱们的 state对象，第二个是自己穿进去的形参
     state.count += payload.amount
   }
   },
+  //里面可以是异步函数，这也是不直接用mutaions里面的原因，这个可以dispatch触发actions里面的方法
   actions:{Action 提交的是 mutation，而不是直接变更状态。Action 可以包含任意异步操作。
     increment (context) {//这个是传进来的形参
       context.commit('increment') //这个就可以直接调用我们 mutaion 里面的方法，括号里面是方法字符串
