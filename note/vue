@@ -781,3 +781,40 @@ this.$nextTick( () => {
       arr.sort((a,b)=>{
         return a.num - b.num //这个和上面同理，只是根据数组里面的对象属性排序
       })
+      
+      
+对于一些vue项目中的数组监听和对象监听踩的坑
+   1.数组
+      Vue中包含一些观察数组的变异方法，他们踩会触发视图更新：push pop shift unshift splice sort reverse
+      由于js的限制，Vue对于下面两点变动的数组是检测不到的，也是遇到的坑
+         1.vm.items[i] = 123; //不是响应的，会导致视图不能更新
+         2.vm.items.length = 0 //不是响应的，会导致视图不能更新
+       处理办法：
+         1.用数组的操作方法
+         2.vm.$set(vm.items, i, newValue) 或者 Vue.set(vm.items, ii, newValue)
+   2.对象
+      例如：
+         var vm = new Vue({
+            data: {
+                  a: 1
+               }
+            })
+         // vm.a 现在是响应式的
+         vm.b = 2 // vm.b 不是响应式的
+       原因：对于已经创建的实例，Vue不能动态的添加根级别的响应式属性，下面是对于嵌套对象添加响应式属性
+       处理办法：
+         var vm = new Vue({
+            data: {
+                  ojbk: {
+                  }
+               }
+            })
+         0.有时候得处理一些可以被监听的属性，得$set,要不然坑很大
+         1.vm.$set(vm.ojbk,'name','fucking shit') //适用于赋予单个新属性
+         2.适用于赋予多个新属性
+            vm.ojbk = Object.assign({}, vm.ojbk, {
+                  age: 27,
+                  name: 'yo man'
+            })
+        
+      
