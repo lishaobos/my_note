@@ -707,6 +707,30 @@ let store = new vuex.Store({
   }
 })
 
+***对于状态管理树的knowlege
+假设 store 里面的 modules 里面有很多的模块，如果没有命名空间的话，是会全部映射到全局的，会导致一些冲突
+在modules里的对象里（也就是模块）
+   1.namespaced:true //开启命名空间（作用是除了 state 其他都会注册到局部，会根据模块路径命名）
+   2.在命名空间里面嵌套的模块会继承命名空间,并且启用了命名空间的 getter 和 action 会收到局部化的 getter，dispatch 和 commit
+   3.一些需要注意的点：
+      1.getters:{
+         fuck(state,getters,rootState,rootGetters){} //他会额外传入全局的参数和getters
+        }
+      2.actions:{
+         yo({commit,dispatch,rootState,state,getters,rootGetters}){} //这些全局和局部都可以结构出来，当然不止写的这些
+      }
+   4.root:true
+   5.关于怎么在组件中引入有命名空间的方法
+      1.第一种
+         import {mapGetters,mapState} from 'vuex'
+         ...mapGetters('模块路径',['方法']) //假设我们是a模块，模块路径就写 a 就行
+         ...mapStates('模块路径',['属性'])
+      2.第二种
+         import {createNamespacedHelpers} from 'vuex'
+         const {mapState:myState,mapGetters:myGetters} = createNamespacedHelpers('模块名') //注意得用 ：起别名
+         ...Getters(['方法'])
+         
+
 //在我们的组件中有两种方法获取信息
   1.第一种
     this.$store 就可以获取我们的信息  
