@@ -720,6 +720,8 @@ let store = new vuex.Store({
          yo({commit,dispatch,rootState,state,getters,rootGetters}){} //这些全局和局部都可以结构出来，当然不止写的这些
       }
    4.root:true
+      假设我们要commit 或者 dispatch 全局的方法，此时我们应该 commit('名字',null,{root:true}) dispatch('名字',null,{root:true})
+      在实验过程中，如果局部和全局都有相同的方法名字，那么不影响，还是会用全局的
    5.关于怎么在组件中引入有命名空间的方法
       1.第一种
          import {mapGetters,mapState} from 'vuex'
