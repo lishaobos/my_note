@@ -487,6 +487,90 @@ router.post('/photos', (req, res, next) => {  console.log(222)
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
+	    
+	  
+***es6
+	var a = {['yo']:123} 等于 var a = {yo:123}
+	var a = 'yoyo' var b = {[a]:123} b就相当于 {yoyo:123}
+可以直接用大括号来定义一个作用域
+    1.let 声明变量
+          1.只在当前的代码块内有效
+          2.let声明的变量名称
+          3.let声明变量的时候不允许在一个作用域声明多次，不存在变量提升，只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。
+          4.let[a,b,c] = [1,2,3];   连续声明变量的方式   也可以let[a,b=2] = [1];  数组是按顺序
+            对象的解构
+            let{bar,foo} = {foo:'a',bar:'sss'};  对象可以不按照顺序   因为数组是有序的排列集合 对象是无序的
+            let obj = {first:'hello',last:'wold'};   let{first:f,last:l} = obj;   f是 hello  l是 world
+            字符串的解构
+            let[a,b] = "hello";
+            函数传入的参数也可以进行解构
+    2.块区域
+        1.es5的语法中只存在函数作用域和全局作用域
+    
+    3.常量
+        1.常量在声明的时候必须赋值。
+        2.常量不能重新赋值。
+        3.如果常量定义的是一个数组，可以给数组添加东西，对象也一样，都允许增删改查，但是不允许重新赋值
+    4.解构赋值
+        es6允许按照一定的模式和顺序，对数组和对象的值进行提取，并且一一对应，对变量进行赋值，被称为解构
+    
+
+        let a1 = "yoman";
+        let b1 = 400;
+        let str = `${a1}阿斯殴斗IQ；骄傲ID及哦啊就是大陆开始觉得尽可能${b1}`;这种是新的拼接方式  这些代码不用格式化
+
+
+        es6中数组有两种复制方法
+            1.浅拷贝，值赋值引用地址
+                var arr1 = [1,2,3]; arr2 = arr1;    改变其中的一个，另外一个也会改变
+            2.深拷贝，将数组中的每一个元素拷贝到另外一个元素中   改变其中的一个 其他的不会改变
+            var arr1 = [1,2,3]; arr2 = Array.from(arr1);  主要是用这个Arrayfrom方法
+                                var arr2 = [...arr1];  这个是超级引用拷贝 也可以进行深度拷贝。
+            除了 forin 循环 还有一个forof循环
+                for in 是遍历数组的索引  
+                for of 是遍历数组的元素值
+                object.keys(对象)  这个是看对象中的key值是否存在
+
+
+//es6 箭头函数
+        //基本语法
+        let c = (e)=>{console.log(e)}
+        //如果参数只有一个，则可以省略小括号，若函数体只有一行输出语句的时候，可以省略大括号
+
+        var a = function(...arg){
+            console.log(arg);
+        }
+        a(1,2,5,5,6,3)   //如果这样的花会把所有的参数给打印出来
+
+        //箭头回调函数
+        //数组的循环遍历方法
+        let arr = [1,2,3,4];
+        arr.map((e)=>{
+            console.log(e*e);
+        });
+        //这个map方法会把数组替你遍历
+
+        //es6 对象的简介写法
+        var foo = 'asd';
+        var baz = {foo};
+        var baz = {foo:'asd'}//等同于这个
+
+        //对象方法简写方法  es6
+        var o = {
+            method(){
+                return 'hey';
+            }
+        }
+        //等同于 es5
+        var o = {
+            method:function(){
+                return 'hey';
+            }
+        }
+        
+        // ES6规定class只有静态方法没有静态属性。
+        node 不支持加载静态的资源
+
 
 
 
