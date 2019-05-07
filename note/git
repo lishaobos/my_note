@@ -44,3 +44,12 @@ git pull (拉取远程仓库，并且跟新本地)
 对于 git pull 和 git commit 的顺序
 1.在远程和本地无冲突的情况(每个人开发自己的模块)：git pull -> git commit -> git push
 2.在有冲突的情况(一个模块被多个人改变)：git commit -> git pull -> git push
+
+首先应该理解git的原理。
+git分为两个仓库，一个是本地的，一个是远程的。
+git add .和git commit都是针对你的本地仓库。
+git add做了什么，你可以简单理解是标记下那些文件要被提交到本地仓库。
+git commit就是把你标记的文件提交到本地仓库
+git pull是从远程仓库拉代码并merge到你的本地仓库，pull是两个命令的合（fetch和merge）
+所以理论上pull在这两个之前之后都没什么问题，但是通常推荐先pull，我的习惯是
+pull、add、commit
