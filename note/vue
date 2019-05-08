@@ -844,6 +844,13 @@ this.$nextTick( () => {
                   age: 27,
                   name: 'yo man'
             })
+   3.一些零碎的记录
+      1.watch里面监听不到对象里面某个值的改变
+      2.像是一个数组里面有很多个对象，要修改某个对象的属性
+         0.vue建议用数组替换原来的数组，这么做是vue推荐的
+         1.this.arr[index].showAlert = true; Vue.set(this.arr, index, this.arr[index]); //对数组
+         2.Vue.set(this.arr[index], `showAlert`, true) //对对象
+         3.set的对象的值或者数组的值都会覆盖之前的
             
 对于Vue的provide
    例子：export default {
