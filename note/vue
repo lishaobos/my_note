@@ -850,7 +850,8 @@ this.$nextTick( () => {
          0.vue建议用数组替换原来的数组，这么做是vue推荐的
          1.this.arr[index].showAlert = true; Vue.set(this.arr, index, this.arr[index]); //对数组
          2.Vue.set(this.arr[index], `showAlert`, true) //对对象
-         3.set的对象的值或者数组的值都会覆盖之前的
+         3.this.arr[index].showAlert = true; this.arr = Object.assign({}, this.arr); //这个有点日晷
+         4.set的对象的值或者数组的值都会覆盖之前的
             
 对于Vue的provide
    例子：export default {
@@ -871,6 +872,7 @@ this.$nextTick( () => {
          }
      ***总结  
           对于更深层次的孙子组件那些，这样可以访问到顶上组件的参数
+
          
         
       
