@@ -873,6 +873,10 @@ this.$nextTick( () => {
      ***总结  
           对于更深层次的孙子组件那些，这样可以访问到顶上组件的参数
 
+关于 $event
+   例：<div @click="yo($event)" /> //我们就可以接收到原始的 dom 事件
+       <div @click="yo(message,$event)" /> //也可以同时接受我们传进来的参数
+       <div @click="a = $event" /> //用我们的参数来接受也是可以的
          
         
       
