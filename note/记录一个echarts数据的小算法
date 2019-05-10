@@ -1,0 +1,80 @@
+let data =  [
+  {
+    name: "汉族",
+    value: "东校区",
+    count: 20
+  },
+  {
+    name: "苗族",
+    value: "东校区",
+    count: 30
+  },
+  {
+    name: "汉族",
+    value: "哈哈区",
+    count: 20
+  },
+  {
+    name: "汉族",
+    value: "西校区",
+    count: 25
+  },
+  {
+    name: "汉族",
+    value: "北校区",
+    count: 25
+  },
+  {
+    name: "汉族",
+    value: "南校区",
+    count: 20
+  },
+  {
+    name: "回族",
+    value: "南校区",
+    count: 21
+  }
+];
+let [nation,campus] = [[],[]]; //民族,校区
+data.map(_ => {
+  if(nation.indexOf(_.name) == -1){
+    nation.push(_.name)
+  }
+  if(campus.indexOf(_.value) == -1){
+    campus.push(_.value)
+  }
+})
+campus = campus.map(_ => {
+  return {'value': _,nation:{}}
+})
+campus.map(_ => {
+    for(let i in data){
+      if(_.value == data[i].value){
+        _.nation[data[i].name] = data[i].count
+      }
+    }
+})
+nation.map(_ => {
+  for(let i in campus){
+    if(!campus[i]['nation'][_]){
+      campus[i]['nation'][_] = 0
+    }
+  }
+})
+let yo = []
+for(let i in nation){
+  let obj = {}
+  obj.value = nation[i]
+  obj.data = []
+  campus.map( _ => {
+    for(let j in _.nation){
+      if(j == nation[i]){
+        obj.data.push(_.nation[j])
+      }
+    }
+  })
+  yo.push(obj)
+}
+console.log(nation)
+console.log(campus)
+console.log(yo)
