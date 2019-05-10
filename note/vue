@@ -267,6 +267,8 @@ vue的生命周期函数：也竟是我们说的钩子函数
     4.mount  组件挂载后，页面显示
     5.beforUpdate  组件更新前，页面未更新，虚拟dom已经配置
     6.updated  组件更新后，页面显示
+    _.activated keep-alive 组件激活时调用 //使用keep-alive组件有效
+    _.deactivated keep-alive 组件停用时调用  //使用keep-alive组件有效
     7.beforeDestory  组件销毁前
     8.destoryed  组件销毁时
 
@@ -617,6 +619,20 @@ components:{
 <keep-alive :include="['a', 'b']">
   <component :is="view"></component>
 </keep-alive>
+
+***关于 keep-alive再补一些知识
+   1.activated 和 deactivated 这两个生命周期函数只有在 keep-alive 组件中的才会触发
+   2.include 和 exclude 这俩就不多说了，但项目中出现无法生效的问题
+   3.关于缓存部分路由跳转的组件
+      1.在路由中加上 mete对象 keepAlive 属性为 true
+      2. <keep-alive>
+         <router-view v-if="$route.meta.keepAlive"></router-view>
+         </keep-alive>
+         <router-view v-if="!$route.meta.keepAlive"></router-view>
+      3. beforeRouteLeave(to, from, next) {
+         to.meta.keepAlive = true;  // 修改缓存属性
+         next();
+         }
 
 
 对于脚手架 cli3 的配置
