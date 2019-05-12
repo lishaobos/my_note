@@ -893,6 +893,23 @@ this.$nextTick( () => {
    例：<div @click="yo($event)" /> //我们就可以接收到原始的 dom 事件
        <div @click="yo(message,$event)" /> //也可以同时接受我们传进来的参数
        <div @click="a = $event" /> //用我们的参数来接受也是可以的
-         
+
+关于 vue 打包之后出现的没见过的 link 标签
+   例1：<link rel="preload" href="style.css" as="style">
+        <link rel="preload" href="main.js" as="script">
+        preload 就是浏览器预先加载，且不会发生阻塞， href就是文件地址，as就是告诉浏览器要解析什么类型的资源
+   例2：<link rel="preload" href="sintel-short.mp4" as="video" type="video/mp4">
+        支持 type 属性，这一属性可以包含该元素所指向资源的MIME类型。在浏览器进行预加载的时候，这个属性值将会非常有用
+        ——浏览器将使用type属性来判断它是否支持这一资源，如果浏览器支持这一类型资源的预加载，下载将会开始，否则便对其加以忽略。
+        mime 类型用处是在于浏览器会用识别这个类型的默认工具打开
+   例3：<link rel="preload" href="bg-image-wide.png" as="image" media="(min-width: 601px)">
+        可以加媒体查询
+   例4：<link rel="preload" href="fonts/zantroke-webfont.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+        字体是一个大问题，因为字体是较晚才能发现的资源，如果资源是跨域的，那么久要加上 crossorigin 属性（字体不跨域也得加）
+   例5：<link rel="preload" as="style" href="asyncstyle.css" onload="this.rel='stylesheet'">
+        <link rel="preload" as="script" href="async_script.js" onload="var script = document.createElement('script'); script.src = this.href; document.body.appendChild(script);">
+        这个基于标签的异步加载方式有点酷
+    例6：<link rel='prefetch'>
+         这个标签经过测试，是在浏览器闲的时候才加载的资源（比如说加载电子书的下一页的内容）
         
       
