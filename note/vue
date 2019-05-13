@@ -738,6 +738,8 @@ let store = new vuex.Store({
    4.root:true
       假设我们要commit 或者 dispatch 全局的方法，此时我们应该 commit('名字',null,{root:true}) dispatch('名字',null,{root:true})
       在实验过程中，如果局部和全局都有相同的方法名字，那么不影响，还是会用全局的
+
+      要 dispatch 某个模块的方法 //  $store.dispatch('模块名/方法')
    5.关于怎么在组件中引入有命名空间的方法
       1.第一种
          import {mapGetters,mapState} from 'vuex'

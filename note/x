@@ -567,6 +567,12 @@ router.post('/photos', (req, res, next) => {  console.log(222)
                 return 'hey';
             }
         }
+
+        //一个日鬼的对象书写方式
+        var a = {['yo']:123} // {yo:123}
+
+        var yo = 'ddd'
+        var a = {[yo]:123} // {ddd:123}
         
         // ES6规定class只有静态方法没有静态属性。
         node 不支持加载静态的资源
