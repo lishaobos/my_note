@@ -19,9 +19,46 @@
                 1.在 echarts 官网提供了一些主题，点击定制主题里面也有好多方案，都可以下载，然后这里面也可以自己配置自己的主题
                 2.注意第一步下载的主题的文件名是不能自己进行修改的，在vue中得放在 node_moudles 下面的 echarts文件夹下面的theme文件夹下
                 3.我们除了第一步官网提供的三个主题，其他都是要额外引入的（例：import 'echarts/theme/chalk.js'）*注意在引入echarts后面引入
+                
     5.关于 base64 转码的问题
         1.let reader = new FileReader()
         2.reader.readAsDataURL(文件)
         3.reader.onload = _ => {console.log(reader.result) //这个就是转的 base64 }
         4.最好写上 reader.onerror = _ => {//错误提示} //防止意外发生
         
+    6.关于项目中的 lodash 的使用
+        1.使用深克隆
+        2.使用防抖和节流（防止按钮或者事件在短时间内触发多次） //这俩其实是一样的
+            1.debounce(function,time,option:{}) //应用场景：input输入完毕触发事件，onresize页面reflow
+                debounce就是在time时间内如果触发事件，那么下次触发会延迟到这次点击之后过 time 事件
+                选项 leading 是在触发延迟之前执行 （只写这个就是狂点按钮，事件只会在第一次和最后一次生效）
+                选项 trailing 是在触发延迟之后执行 （只写这个就是狂点按钮，最后一次生效）
+                选项 maxWait 是保证这个时间段内必定执行一次
+            2.throttle(function,time,option:{}) //应用场景：滚动条滚动时
+                这个其实和 debounce 一样，只是规定time时间段内必定执行一次，只是延迟之前和延迟之后的关系
+                
+    7.关于 element 遇到的一些日鬼的问题
+        1.popover 在表格循环生成的时候会发生无法关闭的问题
+            解决办法： 调用不知道在哪里的 doClose 方法
+                 <el-popover
+                  :ref="'popover-'+scope.row.id"
+                  placement="top"
+                  width="160"
+                  trigger="click"
+                >
+                  <p>确定删除吗？</p>
+                  <div style="text-align: right; margin: 0">
+                    <el-button
+                      size="mini"
+                      type="text"
+                      @click="$refs['popover-'+scope.row.id].doClose()"
+                    >取消</el-button>
+                    <el-button
+                      type="danger"
+                      size="mini"
+                      @click="$refs['popover-'+scope.row.id].doClose(),deldepartment(scope.row.gid)"
+                    >确定</el-button>
+                  </div>
+                  <!-- <el-button slot="reference">删除</el-button> -->
+                  <deletes slot="reference"  :disabled="dis"/>
+                </el-popover>
