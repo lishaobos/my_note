@@ -62,3 +62,13 @@
                   <!-- <el-button slot="reference">删除</el-button> -->
                   <deletes slot="reference"  :disabled="dis"/>
                 </el-popover>
+     
+     8.关于vue的导航栏
+        在切换导航的时候，或者用户点击浏览器的前进或者后退的时候，我们得监听路由的实时切换，所以我们在导航这个组件页面中
+        只要实时监听当前路由的变化就行了，例如：
+        watch:{
+            ['$route.path'](newPath,oldPath){
+            //这里面我们就可以干我们想干的事情
+          }
+        }
+        
