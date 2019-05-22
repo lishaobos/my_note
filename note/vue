@@ -913,5 +913,8 @@ this.$nextTick( () => {
         这个基于标签的异步加载方式有点酷
     例6：<link rel='prefetch'>
          这个标签经过测试，是在浏览器闲的时候才加载的资源（比如说加载电子书的下一页的内容）
-        
+
+关于 vue 中引入 node_mudles 里面的文件不需要绝对路径，或者相对路径，只要引入文件夹名称就行
+   1.node.js规定了如果引入路径没有 ./ 就会从这个大文件的 node_modules文件夹里面找，如果没有再往上一层 node_modules 文件里面找（这是node的约定）
+   2.目前 es6 import 语法都是转译成 require的
       
