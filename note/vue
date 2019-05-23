@@ -917,4 +917,18 @@ this.$nextTick( () => {
 关于 vue 中引入 node_mudles 里面的文件不需要绝对路径，或者相对路径，只要引入文件夹名称就行
    1.node.js规定了如果引入路径没有 ./ 就会从这个大文件的 node_modules文件夹里面找，如果没有再往上一层 node_modules 文件里面找（这是node的约定）
    2.目前 es6 import 语法都是转译成 require的
-      
+
+关于 vue 中的递归组件，也就是组件调用自身
+   1.因为组件中有 name 属性，这个 name 不仅是在报错的时候可以帮助我们快速找到错误组件，还可以调用自身
+   2.例如：
+      <template>
+         <div v-for='item in list'>
+         <yo :list='item.list'>
+         <div>
+      </template>
+      export default {
+         props:{
+            list:Array 
+         }
+         name:'yo'
+      }
