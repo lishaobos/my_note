@@ -144,3 +144,32 @@
     
     
 ***关于 js 执行上下文，环境栈
+    **声明函数的区别
+        1.let a = function () {console.log(111)}
+        2.function a () {console.log(111)}
+        speaker:
+            第一种是必须在 let 语句之后函数才生效
+            第二种是会变量提升到最高级别，比 var 这些还高，并且在函数声明之前就可以调用,并且 a.name(提供这个属性，就是函数的名字)
+     **apply call bind
+        1.apply，call，bind 都是可以改变函数的执行上下文
+        2.apply(object,[]) call(object,'','') bind(object,'',) //这是使用的方式，如果不传参数，只写一个参数就行了
+        3.apply 和 call 都是让函数的 this 指向指向到我们传入的 object,bind也是，不过 bind 是返回一个新的函数
+        4.一些点说一下
+            假设 function a(){
+                    console.log(this.num)
+                   }
+                let b = {num:123}
+                a.apply(b)
+                然后 a() 就会打印出来 123
+            还有之前的一个疑惑
+                 function a(){
+                    console.log(this.num)
+                  }
+                  var b = new a; b.num = 123
+                  a() 打印出来 undefined //按理来说 this 不是应该指向我们实例的对象身上吗
+                  因为 var b = new a 这段代码会重新执行 a 函数，但这个时候 对象没有实例化结束，this指向的是 a函数，
+                  当执行完成之后会创建一个新对象 b，会执行原型链接，将构造函数 a 的作用域赋给 b 对象，也就是 this的
+                  指向指到了 b ，如果函数内部没有返回新的对象的话，new 表达式会自动返回这个新对象。
+                  
+                  
+        
