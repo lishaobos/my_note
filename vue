@@ -955,3 +955,17 @@ module.exports = {
   2.process.env.NODE_ENV 会是"development"、"production" 或 "test" 中的一个。具体的值取决于应用运行的模式。（axios 可以根据这个来设置 baseUrl）
   3.process.env.BASE_URL 和 publicPath 对应，设置这个就会改变我们部署的基础路径
   4.process.env.VUE_APP_* 还提供了这么个格式的变量，* 是我们能改的东西
+
+
+***关于 axios 
+axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded'
+const httpRequest = axios.create({
+    baseURL: '/api/',
+    timeout: 50000,
+    withCredentials:true,//后台可以产看我的 cookie
+    transformRequest: [function (data) {
+        // 对 data 进行任意转换处理
+        data = qs.stringify(data) //这个配合上面那个请求头，是为了发过去表单数据格式（form-data数据格式）
+        return data;
+      }],
+});
