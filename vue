@@ -962,7 +962,7 @@ axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded'
 const httpRequest = axios.create({
     baseURL: '/api/',
     timeout: 50000,
-    withCredentials:true,//后台可以产看我的 cookie
+    withCredentials:true,//携带 cookie 到服务器
     transformRequest: [function (data) {
         // 对 data 进行任意转换处理
         data = qs.stringify(data) //这个配合上面那个请求头，是为了发过去表单数据格式（form-data数据格式）
