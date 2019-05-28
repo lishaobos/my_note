@@ -635,21 +635,6 @@ components:{
          }
 
 
-对于脚手架 cli3 的配置
-1.在根目录新建一个 vue.config.js文件
-2.里面写 (这个只是配置简易路径,其他的用上了再搜)
-let path = require('path')
-function resolve (dir) {
-  return path.join(__dirname, dir)
-}
-module.exports = {
-  chainWebpack: config => {
-    config.resolve.alias
-      .set('@', resolve('src/components')) 
-  }
-}
-
-
 对于 vue 中 只要 npm i -S less less-loader    (把 less 和 less-loader 两个一装)
 然后 style标签上 lang='less' 就ok
 
@@ -932,3 +917,40 @@ this.$nextTick( () => {
          }
          name:'yo'
       }
+
+
+***vue.config.js
+对于脚手架 cli3 的配置
+1.在根目录新建一个 vue.config.js文件
+2.里面写 (这个只是配置简易路径,其他的用上了再搜)
+let path = require('path')
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
+module.exports = {
+  //代理请求
+  devServer:{
+    proxy:'http://111.111:80' //这种写法是所有请求都会被代理到这个接口
+    proxy:{
+      '/api':{  
+        target:'http://111.111:80', //这个代表所有 /api 开头的请求都被代理到这个地址（可以根据下面的 node 全局环境变量变化）
+        changeOrigin:true, //这个得开启
+        pathRewrite:{
+          '/api':'' //这个是api代理请求之后 把 /api 变为空，请求里面就没有 /api 了
+        }
+      }
+    }
+  }
+  //配置路径别名用
+  chainWebpack: config => {
+    config.resolve.alias
+      .set('@', resolve('src/components')) 
+  }
+}
+
+**关于 vue 配置生产环境或者开发环境时候的问题 
+  1.process 对象
+    该对象是在 node 环境中一个 global 对象，控制 node 进程，他对于 node 应用程序始终是可用的，所以不需要 require
+  2.process.env.NODE_ENV 会是"development"、"production" 或 "test" 中的一个。具体的值取决于应用运行的模式。（axios 可以根据这个来设置 baseUrl）
+  3.process.env.BASE_URL 和 publicPath 对应，设置这个就会改变我们部署的基础路径
+  4.process.env.VUE_APP_* 还提供了这么个格式的变量，* 是我们能改的东西

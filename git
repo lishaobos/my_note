@@ -53,3 +53,27 @@ git commit就是把你标记的文件提交到本地仓库
 git pull是从远程仓库拉代码并merge到你的本地仓库，pull是两个命令的合（fetch和merge）
 所以理论上pull在这两个之前之后都没什么问题，但是通常推荐先pull，我的习惯是
 pull、add、commit
+
+
+***创建新的版本库
+git clone git@47.92.203.251:lishaobo/welcomenetwork.git
+cd welcomenetwork
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+***已存在的文件夹
+cd existing_folder
+git init
+git remote add origin git@47.92.203.251:lishaobo/welcomenetwork.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+***已存在的版本库
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin git@47.92.203.251:lishaobo/welcomenetwork.git
+git push -u origin --all
+git push -u origin --tags
