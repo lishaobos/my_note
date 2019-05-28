@@ -928,6 +928,7 @@ function resolve (dir) {
   return path.join(__dirname, dir)
 }
 module.exports = {
+  productionSourceMap:false, //这个是vue打包不产生 map文件，map文件对报错精确到哪里有作用
   //代理请求
   devServer:{
     proxy:'http://111.111:80' //这种写法是所有请求都会被代理到这个接口
