@@ -231,6 +231,9 @@ Vue.component('abc', {//这个 abc是我们写在页面中的标签
 
     a标签会刷新页面，我们用vue提供的一个标签就不会发生跳转   <router-link to="#" ></router-link>  这个标签里面 tag="div" 这个属性可以把自己变成我们要的标签 
     <router-view></router-view> 这个标签写在我们的根组件内 就会产生我们使用哪个路由，页面就会显示我们哪个路由里面呈现的内容
+    
+***$route对象
+   该对象可以监听页面路由的变化，$route.match可以得到路由元的数组信息
 
 进入我们搭建的项目里面  index.html -> main.js(先调用根组件) -> App.vue 然后再调用其它小组件，这是大概顺序
 App.vue是我们的根组件  组件里面包含 1.模板 2.行为  3.样式
