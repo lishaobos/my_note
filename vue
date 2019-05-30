@@ -961,6 +961,7 @@ module.exports = {
 
 
 ***关于 axios 
+import router from './router/router.js' //直接引入我们实例化的router
 axios.defaults.headers.post['Content-Type']='application/x-www-form-urlencoded'
 const httpRequest = axios.create({
     baseURL: '/api/',
@@ -981,3 +982,4 @@ httpRequest.interceptors.request.use(function (config) {
     // 对请求错误做些什么
     return Promise.reject(error);
 });
+//在响应的时候，如果身份验证过期，可以 router.push('/login') //这个虽然没有挂载到 Vue 上，但是这样是可以使用的
