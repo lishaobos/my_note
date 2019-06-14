@@ -78,4 +78,18 @@
         input 标签提供了 capture 属性,目前知道的有三个
         例如： 'camera'//摄像头 'microphone'//音频 'camcorder'//视频
         调用完成之后获取表单对象里面的文件，做自己想做的事情就行了
+     
+     10.关于 vue 打包优化问题
+     vue.config.js中 vue 提供了 configureWebpack 对象，这个对象就是 webpack 的配置项。
+     打包配置例子：
+        configureWebpack:{
+            externals:{
+                //下面这两个的意思就是 vue和element-ui都不会被打包
+                'vue':'vue',
+                'element-ui':'element-ui'
+            }
+        }
+      1.首先得把 main.js 或者其他地方 import element from 'element-ui'这些东西去掉，要不然会报错（ELEMENT 是element提供的全局变量）
+      2.就好了
+      
         
