@@ -92,4 +92,9 @@
       1.首先得把 main.js 或者其他地方 import element from 'element-ui'这些东西去掉，要不然会报错（ELEMENT 是element提供的全局变量）
       2.就好了
       
+      11.关于 axios 有些后端需要FormData数据格式
+        1.把axios请求头变成 headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'},
+        2.引入安装 axios 自带的 qs import qs from 'qs'
+        3.在请求拦截的时候格式化数据 qs.stringify(data) 
+      
         
