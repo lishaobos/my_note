@@ -97,4 +97,31 @@
         2.引入安装 axios 自带的 qs import qs from 'qs'
         3.在请求拦截的时候格式化数据 qs.stringify(data) 
       
-        
+      12.关于 router 的 addRoutes
+        1.这个方法可以给实例化的路由添加异步路由信息
+        2.关于更换比如说用户的权限菜单，如果要实现不刷新，新路由换掉已有的路由信息，不是追加：
+            例：
+                //原本的路由
+                let router = new VueRouter({
+                    routes
+                })
+                //重置路由的方法
+                let resetRouter = (asyncRoutes) => {
+                    let router_ = new VueRouter({
+                        routes:[]
+                    }) 
+                    router.matcher = router.matcher //因为路由信息全部存放在matcher里面，这样就相当于初始化路由。
+                    asyncRoutes.push({path:'8',redirect:'/404'})//这个得放在最后添加，要不页面会跳转到404
+                    router.addRoutes(asyncRoutes)
+                }
+        3.在路由拦截因为我们要获取异步路由，所以会出现一些问题
+            例：
+                router.beforeEatch((to,from,next) => {
+                    if(***){
+                        resetRouter(asyncRoutes)//添加异步路由
+                        next(to)//因为直接 next() 页面会跳到404，文档上说是执行addRoutes有可能还没有完成，这样直接就给她跳到一个新的路由元信息
+                    }else{
+                        next()//下次进来addRoutes会执行完毕，这个 next() 就会直接成功了
+                    }
+                })
+             但是项目中的 刷新会跳转 404 不知道什么原因，已经这样处理过，但是还是会失败，有一丝日鬼。
