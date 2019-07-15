@@ -6,7 +6,26 @@
             2.在 public 文件下的 index.html 也可以判断，然后用js创建一个 link 标签，然后给他的 href 属性变成我们想要的css
             3.经测试 1中 import('xx.css')引入一次就固定了，不会产生动态切换样式的效果
             4.新的思路，给body或者html起一个类名，在不同类名下写入不同的样式，到时候修改 className就可以动态皮肤
-            
+        3.上面的方法不好用，所以又研究了两种方法，原理一样。
+            1.在 public 文件夹放几套 css 直接js操作，简单粗暴
+            2.利用 gulp-css-wrap 批量对css样式添加命名空间，加载的资源是一样的，只是到时候切换class就行。
+                方法：
+                    //gulpfile.js             //注意，文件名就是这个
+                    var path = require('path')
+                    var gulp = require('gulp') //这个得全局安装
+                    var cleanCSS = require('gulp-clean-css')
+                    var cssWrap = require('gulp-css-wrap')
+                    gulp.task('css-wrap', function () {
+                        return gulp.src(path.resolve('./index.css'))//目标文件
+                        /* 找需要添加命名空间的css文件，支持正则表达式 */
+                            .pipe(cssWrap({
+                                selector: '.fuck' /* 添加的命名空间 */
+                            }))
+                            .pipe(cleanCSS())
+                            .pipe(gulp.dest('./theme')) /* 存放的目录 */
+                    })
+                    // 执行 gulp css-wrap 命令就ok
+       
     2.左边的菜单从数据库获取（意义在于以后可以根据特定的人加载不同的菜单）// vue的 addRoutes 异步路由方法
     
     3.王哥：对于像是router里面的组件，或者一些要引入的组件，最后可以配置不打包，然后通过cdn的方式引入，可以加快速度
