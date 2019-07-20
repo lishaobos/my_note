@@ -243,4 +243,19 @@
         先从自身开始，然后一层一层访问外部环境，最后就是我们的全局环境，搜索到变量时就搜索终止，不会再往外。（全局环境默认就是 window 对象）
     
     6.toFixed()返回小数点保留几位，toString(num)返回 num 进制的数字（前提是数字类型的调用这俩）
+    
+    7.函数的 prototype 
+        function a(){this.cs = 132}; a.prototype = {cs:123};
+        var b = new a() // {cs: 132}
+        总结：重新是没有用的,直接访问 a.cs 返回的是 undefined ,重写如果有重复的只会阻止对原型的访问，重写的是不生效的,除非 delete 我们重写的属性，
+        这样才会恢复对圆形的链接。
+        
+        动态原型模式：
+            function a(){
+                this.name = 123;
+                //这样的好处是先判断原型里面是否有该函数，没有再添加
+                if(typeof this.say != 'function'){
+                    a.prototype.say = function (){}
+                }
+            }
         
