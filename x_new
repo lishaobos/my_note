@@ -61,12 +61,16 @@
             会导致函数体里面声明的a变量无法被回收
             var a = 1
             function big(){
+                var b = 1
                 var a = 2
                 return function (){
                     console.log(a)
                 }
             }
-            big()() //打印出来 2
+            var c = big() //执行这一句的时候就改变了匿名函数的作用域链（吧 big 函数的作用域添加到其中了，在全局和自身之间）
+            c() //打印出来 2 ，这个返回的函数引用了 big 函数里面的变量，所以被引用的活动变量是不会被回收的。
+            c = null  //只要解除对这个匿名函数的引用，垃圾回收才会回收这个匿名函数以及 a 变量。
+            // 如果 b 变量没有被引用，也是不会被回收的，但是 v8 会判断哪些没有被引用，然后回收，浏览器实现程度不一样。
         2.函数传递参数
             这个让人明白函数体访问到的参数是在他的作用域的参数，也就是声明函数的地方。
             var a = 1;
@@ -220,7 +224,8 @@
     2.arguments 对象
         1.非箭头函数内部都包含此对象，该对象是函数传递进来的参数列表，可以不用形参接收。
         2.function a(a,...mystyle){} //这种定义形参是可以访问剩余的变量集合。
-        3.arguments.callee 可以访问到该函数，也可以执行该函数
+        3.class costructor 里面也可以访问 arguments 对象。
+        4.arguments.callee 可以访问到该函数，也可以执行该函数
             例：function a(num){
                 if(num == 1) return 1
                 arguments.callee(1)
@@ -236,7 +241,7 @@
                 
     4.typeof 和 instanceof
         1.typeof 可以帮我们检测是什么类型
-        2.instanceof 只应用于引用变量，用于判断是哪种类型的引用变量。 //例： var a = []; a instanceof Array
+        2.instanceof 只应用于引用变量，用于判断是哪种类型的引用变量,也用于判断实例与原型的从属关系。 //例： var a = []; a instanceof Array
         
     5.作用域链
         当代码在一个环境中执行时，会创建变量对象的一个作用域链，作用就是保证执行环境和函数有序的被访问，拿嵌套函数举例，最里面的函数访问变量，
@@ -244,13 +249,7 @@
     
     6.toFixed()返回小数点保留几位，toString(num)返回 num 进制的数字（前提是数字类型的调用这俩）
     
-    7.函数的 prototype 
-        function a(){this.cs = 132}; a.prototype = {cs:123};
-        var b = new a() // {cs: 132}
-        总结：重新是没有用的,直接访问 a.cs 返回的是 undefined ,重写如果有重复的只会阻止对原型的访问，重写的是不生效的,除非 delete 我们重写的属性，
-        这样才会恢复对圆形的链接。
-        
-        动态原型模式：
+    7. 动态原型模式：
             function a(){
                 this.name = 123;
                 //这样的好处是先判断原型里面是否有该函数，没有再添加
@@ -258,4 +257,73 @@
                     a.prototype.say = function (){}
                 }
             }
+    
+    8.关于 new 关键字，和原型链的理解。
+        1.new 一个构造函数会发生如下几步
+            1.创建一个新对象。
+            2.将构造函数 this 指向新对象。
+            3.执行构造函数。
+            4.建立原型链接（将对象的原型指向构造函数对应的原型对象）。
+            5.返回对象。
+         2.根据 new 关键字的原理说说原型继承。
+            1.普通修改原型(不论什么时候修改原型都会整体响应)
+                function a(){this.name=123}
+                var a1 = new a();
+                a.prototype.cs = 666;
+                a1.cs // 666
+            2.重写原型的两种方式。
+                1.后重写
+                function a(){this.name = 123};
+                var a1 = new a();
+                a.prototype = {
+                    constructor:a,
+                    cs:666
+                }
+                a1.cs // undefined
+                var a2 = new a();
+                a2.cs // 666
+                reason:因为 prototype 只是一个指向原型内存地址的属性，我们已经先实例化 a1 ，a1的原型已经指向了原始的原型对象，
+                       我们重写原型对象，只是改变构造函数 prototype 的指向，a1还是指向原来的原型，a2 在 new 的时候，因为指向
+                       已经改变到了另一个内存地址，所以 a2 会有 cs 属性。                
+                2.先重写（不多说了）
+                
+    9.记录一点 this 的知识。
+        ***函数内部的 this 总会指向调用它的对象。
+        ***this 不同于作用域链的变量，他只会在自己的作用域查找，除非像箭头函数这种只能继承的。
+        下面举几个小例子：
+            1.
+            let name = 123;
+            let a = {
+                name:666;
+                say(){
+                    return function(){
+                        return this.name
+                    }
+                }
+            }
+            a.say()() // 123
+            2.
+            let name = 123;
+            let a = {
+                name:666;
+                say(){
+                    return () => {
+                        return this.name
+                    }
+                }
+            }
+            a.say()() // 666 因为箭头函数继承了 say 函数的 this;
+            3.
+            let name = 123;
+            let a = {
+                name:666;
+                say(){
+                    return function(){
+                        return this.name
+                    }
+                }
+            }
+            let b = {name:777}
+            b.say = a.say()
+            b.say() // 777
         
