@@ -27,6 +27,8 @@
                     // 执行 gulp css-wrap 命令就ok
        
     2.左边的菜单从数据库获取（意义在于以后可以根据特定的人加载不同的菜单）// vue的 addRoutes 异步路由方法
+    2.1 一种权限管理可以用后台路由和前台路由递归对比，筛选出正确的路由。
+    2.2 另一种是路由由前端全权负责，后台不用路由表，权限放在路由的 meta 里面，后台只要传一个身份类型就行。
     
     3.王哥：对于像是router里面的组件，或者一些要引入的组件，最后可以配置不打包，然后通过cdn的方式引入，可以加快速度
     
@@ -46,6 +48,17 @@
         2.reader.readAsDataURL(文件)
         3.reader.onload = _ => {console.log(reader.result) //这个就是转的 base64 }
         4.最好写上 reader.onerror = _ => {//错误提示} //防止意外发生
+    5.1 关于后台传来 excel 流，前台下载流文件。
+        1.axios 的 responseType:'arraybuffer' // responseType提供选项（'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'）默认是 json，
+        要不然传过来的 excel 文件流会乱码。
+        2.let blob = new Blob([流],{type:'application/vnd.ms-excel'})
+        3.let a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+        4.a.click(); a.remove(); //进行到这一步就下载成功了
+        5.createObjectURL 的用法。
+            1.objectURL = URL.createObjectURL(object); //用于创建 URL 的 File 对象、Blob 对象或者 MediaSource 对象。
+            2.在每次调用 createObjectURL() 方法时，都会创建一个新的 URL 对象，即使你已经用相同的对象作为参数创建过。当不再需要这些 URL 对象时，
+            每个对象必须通过调用 URL.revokeObjectURL() 方法来释放。浏览器会在文档退出的时候自动释放它们，但是为了获得最佳性能和内存使用状况，
+            你应该在安全的时机主动释放掉它们。
         
     6.关于项目中的 lodash 的使用
         1.使用深克隆
