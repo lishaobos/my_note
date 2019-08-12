@@ -53,8 +53,9 @@
         要不然传过来的 excel 文件流会乱码。
         2.let blob = new Blob([流],{type:'application/vnd.ms-excel'})
         3.let a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-        4.a.click(); a.remove(); //进行到这一步就下载成功了
-        5.createObjectURL 的用法。
+        4.a.download = '小雨'; //下载的文件名字
+        5.a.click(); a.remove(); //进行到这一步就下载成功了
+        6.createObjectURL 的用法。
             1.objectURL = URL.createObjectURL(object); //用于创建 URL 的 File 对象、Blob 对象或者 MediaSource 对象。
             2.在每次调用 createObjectURL() 方法时，都会创建一个新的 URL 对象，即使你已经用相同的对象作为参数创建过。当不再需要这些 URL 对象时，
             每个对象必须通过调用 URL.revokeObjectURL() 方法来释放。浏览器会在文档退出的时候自动释放它们，但是为了获得最佳性能和内存使用状况，
