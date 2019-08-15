@@ -377,3 +377,9 @@
         1. event.preventDefault();
         2. event.stopPropagation();
         3. return false; // 前两种是非 IE 和 IE
+    11.元素的 style 的 cssText 属性是查看元素的行间样式（字符形式），可以直接修改
+    12.document.styleSheets 返回的是所有样式表的规则。往里面找到 CSSStyleRule 属性，里面就放着 cssText 属性
+    13.insertRule 方法的使用
+        1.var sheet = document.styleSheets[0];
+        2.sheet.insertRule("body{ background: pink }",0) // DOM 方法，添加规则
+        3.sheet.deleteRule(0) // DOM 方法，删除规则，参数是规则的索引
