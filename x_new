@@ -383,3 +383,39 @@
         1.var sheet = document.styleSheets[0];
         2.sheet.insertRule("body{ background: pink }",0) // DOM 方法，添加规则
         3.sheet.deleteRule(0) // DOM 方法，删除规则，参数是规则的索引
+     
+***历史状态管理
+    说明:  历史状态管理是现代 web 应用开发中的一个难点，用户的每次操作不一定会打开一个全新的页面，因此后退和前进按钮就失去了
+           然后 H5 通过更新 history 对象为管理历史状态提供了方便
+    1.history.pushState(Object,String,url) //这个方法会增加历史状态，会触发 hashchange 事件
+    2.history.replaceState(Object,String,url) //这个方法会替换当前状态，但是触发不了事件
+    3.popstate 事件会监听到浏览器的前进后退的事件
+    4.hashchange 事件会监听到浏览器的地址的变化，比如说 pushState 就会触发 hashchange 事件。
+
+***错误处理与调试
+    1.throw 可以直接抛出错误 例：throw '错误啦'
+        1.在遇到 throw 操作符时，代码会立即停止执行，仅当有 try-catch 语句铺货到被抛出的值时，代码才会继续执行。（慎用）
+        2.错误类型
+            1.Error
+            2.EvalError
+            3.RangeError
+            4.ReferenceError
+            5.SyntaxError
+            6.TypeError
+            7.URIError
+    2.try catch
+        try{
+            do somthing
+        }catch(error){
+            //这里面我们可以根据错误类型来处理错误
+            if (error instanceof TypeError){
+                // 处理类型错误
+            } else if (error instanceof ReferenceError){
+                // 处理引用错误
+            } else {
+                // 处理其他类型的错误
+            }
+        }finally{
+            //这个不管try 还是 catch 都会执行
+        }
+    3.当 try catch 语句发生错误时，浏览器会认为错误已经被处理了，因而不会抛出错误
