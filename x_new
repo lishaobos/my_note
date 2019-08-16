@@ -383,6 +383,10 @@
         1.var sheet = document.styleSheets[0];
         2.sheet.insertRule("body{ background: pink }",0) // DOM 方法，添加规则
         3.sheet.deleteRule(0) // DOM 方法，删除规则，参数是规则的索引
+    14.dataset 的使用（dom元素的自定义属性，是一个 DOMStringMap）
+        例：<div id='a' />
+            1.a.dataset.sk = 123 // <div data-sk='123' id='a' />
+            2.a.dataset // 123
      
 ***历史状态管理
     说明:  历史状态管理是现代 web 应用开发中的一个难点，用户的每次操作不一定会打开一个全新的页面，因此后退和前进按钮就失去了
