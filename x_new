@@ -423,3 +423,62 @@
             //这个不管try 还是 catch 都会执行
         }
     3.当 try catch 语句发生错误时，浏览器会认为错误已经被处理了，因而不会抛出错误
+    
+    *** websocket
+  说明：首先，同源策略对 websocket 是不生效的，因此可以通过他来连接到任何站点，至于是否会与某个域的页面通信，则完全取决于服务器。
+       使用标准的 HTTP 服务器无法实现 websocket，只有支持这种协议的专门服务器才能正常工作，由于 websocket 使用了自定义的协议，
+       所以 url 也是不一样的，未加密的链接不是 http:// 而是 ws:// 加密的不是 https:// 而是 wss:// 
+  1.websocket 的 readyState 属性
+    readyState 为 0 的时候 // 正在建立连接 
+    readyState 为 1 的时候 // 已经建立连接 
+    readyState 为 2 的时候 // 正在关闭连接 
+    readyState 为 3 的时候 // 已经关闭连接 
+  2.websocket 有三个响应的事件
+    1.open // 在建立连接的时候触发
+    2.error // 在发生错误的时候触发
+    3.close // 在关闭的时候触发
+    注意：websocket 对象不支持 Dom 2级事件，所以这三个事件只能写成 Dom 0级事件
+
+***一些 js 高级技巧
+  1.防篡改对象
+    1.不可扩展对象
+      Object.preventExtensions(对象) // 这个方法可以让对象不能添加属性和方法，但原来的可以修改
+      Object.isExtensible(对象) // 检查对象是否是不可扩展对象
+    2.密封的对象
+      Object.seal(对象) // 密封对象不可扩展，而且已有成员的 configurable 特性将设置为 false，这就意味着不能删除属性和方法
+      Oject.isSealed(对象) // 检查对象是否被密封
+    3.冻结的对象
+      Object.freeze(对象) // 冻结对象既不可以扩展，而且对象的 Writeable 特性被设置为 false 如果设置 set 函数，访问器属性仍然是可写的
+      Object.isFrozen(对象) // 检查对象是否被冻结
+  2.数组分块技术
+    说明：运行在浏览器的 javascript 都被分配了一个确定数量的资源，javascript 被严格限制了，其中一个限制是长时间运行脚本的制约，如果 javascript
+         长时间运行脚本，到达时间限制之后，浏览器会弹出一个错误的对话框，询问用户继续执行还是停止他
+    1.大循环
+      例：for(let i in arr){
+        process(arr[i])
+      }
+      如果数组长度太大导致大循环，正好 javascript 是单线程的，所以阻塞时很难受的
+      1.数组分块技术 （实在是妙哇）
+        function a (arr){
+          if(arr.length == 0) return
+          let item = arr.shift();
+          setTimeval( _ => {
+            process(item)
+            arguments.callee(item)
+          },300)
+  3.说一说 setInterval 和 setTimeout （javascript 除了主线程还有一个执行队列，dom 事件也是被加入执行队列，绕后等待执行的）
+      也想起以前为什么要用 setTimeout 来实现 setInterval 这个问题了
+      说明：不论是 setTimeout 还是 setInterval 这俩一执行，里面的函数就会在设置的时间后被加入队伍等待执行，然后 javascript 很聪明，如果他检测到队列中有一个定时器
+           那么就不会把函数加入队列，所以如果用 setInterval 如果计时器里面的函数执行时间过长，假设执行时间为 1s，然后计时器每 900 毫秒执行一次，那么在计时器准备添加
+           到队列的时候发现上一个计时器还在，那么就不会加入队列，然后就会等两个 900 毫秒，所以还是比较恶心的，这时候为什么用 setTimeout 实现 setInterval 原因就出来了。
+    1.顺便说一嘴函数节流
+          // 这样就实现了一个简单的函数节流，假设鼠标点击后触发，这个不管你点的多快，还是在最后一次点击过 300 毫秒执行
+          function a(func){
+            clearTimeout(func.timeId);
+            func.timeId = setTimeout( _ => {
+              func()
+            },300)
+          }
+  4.Web 计时
+      window.performance 属性里面的 timing 是页面加载或者请求等等一些时间，我们可以更好地了解到页面在浏览器加载的过程中经历了哪些阶段
+  5.Web Workers
