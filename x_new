@@ -482,3 +482,8 @@
   4.Web 计时
       window.performance 属性里面的 timing 是页面加载或者请求等等一些时间，我们可以更好地了解到页面在浏览器加载的过程中经历了哪些阶段
   5.Web Workers
+  6.import 和 require 的区别
+    1.import 是 es6 的语法，require 是AMD的语法
+    2.import 是在编译时调用， reuqire 时运行时调用，所以 import 得放在开头，require 可以放在任何地方
+    3.import 现在浏览器大多没有实现，所以现在一般项目中的 import 最后还是得编译成 require
+    4.require 在引用基础数据类型的时候是赋值，引用复杂数据类型，比如是对象，数组，都是浅拷贝（注意注意）
