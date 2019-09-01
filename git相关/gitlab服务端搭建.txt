@@ -2,7 +2,7 @@
 
 # 注：https://about.gitlab.com/install/ 安装根据官网步骤来就行了，可以不用看下面的安装步骤
 
-##安装步骤（下面记录基于 centOS7）
+## 安装步骤（下面记录基于 centOS7）
     1.安装依赖
     sudo yum install -y curl policycoreutils-python openssh-server
     sudo systemctl enable sshd
@@ -23,7 +23,7 @@
     sudo EXTERNAL_URL="https://gitlab.example.com" yum install -y gitlab-ee
     # 注：这个 https://gitlab.example.com" 可以换成自己的 ip 例如：http://192.168.2.88:99 ，这个就会是你安装的默认地址
 
-##安装 gitlab 与已有的 nginx 冲突（gitlab 页面显示502）
+## 安装 gitlab 与已有的 nginx 冲突（gitlab 页面显示502）
 
     1.vim /etc/gitlab/gitlab.rb ##这个找不到 可以 find -name gitlab.rb 查找这个文件的地址
 

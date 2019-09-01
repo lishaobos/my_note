@@ -73,4 +73,25 @@
     # –with-ld-opt=parameters —设置附加的参数，将用于在链接期间。例如，当在FreeBSD下使用该系统的PCRE库,应指定:–with-ld-opt="-L /usr/local/lib".
     ···
 
+## 安装 mysql
+    1.下载mysql的repo源
+        wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm 
+    2.下载安装包
+        rpm -ivh mysql-community-release-el7-5.noarch.rpm
+    3.安装
+        sudo yum install mysql-server #如果存在进程， kill -9 进程ID 
 
+    # 本地连不上数据库的解决办法
+    1.mysql
+    2.use mysql #使用 mysql 数据库
+    3.delete from user where USER=''; 或者 UPDATE user SET Password=PASSWORD('newpassword') where USER='root';
+    4.FLUSH PRIVILEGES;
+    5.如果还不行就执行下面两步
+        1.停止 mysql
+        2.mysqld_safe --skip-grant-table #屏蔽权限
+    # 注：如果重新启动连不上数据库就执行第 5 步
+
+    # mysql 命令
+        1.service mysqld stop 
+        2.service mysqld start 
+        3.service mysqld restart
