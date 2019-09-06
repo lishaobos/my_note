@@ -17,13 +17,17 @@ Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工
 https://www.oracle.com/java/technologies/jdk8-downloads.html
   
 # 安装命令
-tar -ivh 包
+rpm -ivh 包
   
-# 看是否安装成功
+# 看是否安装成功命令
 java -version
 ```
   
 
 ## 安装 Jenkins 
 
+```
+# 下载
+https://www.oracle.com/java/technologies/jdk8-downloads.html
+```
   
