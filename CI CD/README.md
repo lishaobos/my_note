@@ -38,6 +38,7 @@ nohup java -jar jenkins.war --ajp13Port=-1 --httpPort=8848 # 8848是启动的端
 3.然后会让安装需要的插件，此处选默认即可，等待安装完成。<br/>
 4.创建一个管理员账户。<br/>
 5.上面都完成后会看到这个界面。<br/>
+<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c486771d8309c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" >
 
 
   
