@@ -24,8 +24,10 @@ java -version
 
 ## 安装 Jenkins 
 
-```
-# 下载
+1.下载 Java 的 war 包<br/>
 https://www.oracle.com/java/technologies/jdk8-downloads.html
-```
+
+2.启动 Jenkins
+nohup java -jar jenkins.war --ajp13Port=-1 --httpPort=8848 # 8848是开启的端口号
+
   
