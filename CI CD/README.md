@@ -9,3 +9,13 @@ Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工
 本地不同分支提交，自动触发不同 Jenkins 任务，自动部署到对应的服务器。
 
 # 开始
+
+## 安装 java 环境
+1.rpm 包下载地址
+  https://www.oracle.com/java/technologies/jdk8-downloads.html
+2.安装命令
+  tar -ivh 包
+3.看是否安装成功
+  java -version
+
+##
