@@ -78,9 +78,24 @@ java -jar jenkins.war
 
 4.配置 git hook
 
+<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4cfe042bba32?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
 URL格式为 http://<User ID>:<API Token>@<Jenkins IP地址>:端口/generic-webhook-trigger/invoke <br/>
 userid和api token在jenkins的系统管理-管理用户-admin-设置里。
+  
+<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4d8b530af3a0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 
+5.测试 hook
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4df2c9b49941?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+点击测试，如果配置是成功的，你的Jenkins左侧栏构建执行状态里将会出现一个任务。
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c4e3169a3c1f3?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+另外，你也可以试下本地提交代码，提交代码后，jenkins也会开始一个任务,目前我们没有配置任务开始后让它做什么，所以默认它只会在你提交新代码后，将新代码拉取到jenkins服务器上。到此为止，git钩子我们配置完成。
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7630b81b74c9?imageslim">
 
 
 
