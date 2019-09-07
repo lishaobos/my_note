@@ -98,5 +98,9 @@ userid和api token在jenkins的系统管理-管理用户-admin-设置里。
 <img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7630b81b74c9?imageslim">
 
 
+## 实现自动化构建
+
+
+
 
   
