@@ -28,9 +28,17 @@ java -version
 https://www.oracle.com/java/technologies/jdk8-downloads.html
 
 2.启动 Jenkins<br/>
-nohup java -jar jenkins.war --ajp13Port=-1 --httpPort=8848 # 8848是启动的端口号,nohup 加上连接断开 Jenkins 不会退出
-java -jar jenkins.war --ajp13Port=-1 --httpPort=8848 # 8848是启动的端口号,连接断开 Jenkins 会退出
-java -jar jenkins.war # 默认启动 8080 端口，连接关闭 Jenkins 会退出
+
+```
+# 8848是启动的端口号,nohup 加上连接断开 Jenkins 不会退出
+nohup java -jar jenkins.war --ajp13Port=-1 --httpPort=8848 
+
+# 8848是启动的端口号,连接断开 Jenkins 会退出
+java -jar jenkins.war --ajp13Port=-1 --httpPort=8848 
+
+# 默认启动 8080 端口，连接关闭 Jenkins 会退出
+java -jar jenkins.war 
+```
 
 3.网页访问你的 IP + 启动端口<br/>
 
