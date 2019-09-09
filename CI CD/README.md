@@ -101,9 +101,79 @@ userid和api token在jenkins的系统管理-管理用户-admin-设置里。
 ## 实现自动化构建
 
 git push触发钩子后，jenkins就要开始工作了，自动化的构建任务可以有很多种，比如说安装升级依赖包，单元测试，e2e测试，压缩静态资源，批量重命名等等，无论是npm script还是webpack，gulp之类的工作流，你之前在本地能做的，在这里同样可以做。
-作为演示，这里只演示三个基本常用的工作流程，安装依赖包->单元测试->打包，也就是下面这三个命令。
 
+1.首先，和本地运行npm script一样，我们要想在jenkins里面执行npm命令，先要在jenkins里面配置node的环境，可以通过配置环境变量的方式引入node，也可以通过安装插件的方式，这里使用了插件的方式，安装一下nvm wrapper这个插件。<br/>
 
+2.打开刚刚的jenkins任务，点击配置里面的构建环境，勾选这个，并指定一个node版本。<br/>
 
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7726c4fc17ba?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 
+3.点击构建，把要执行的命令输进去，多个命令使用&&分开（切记最后一行不用 &&）。<br/>
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7771ae212268?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+4. 保存。<br/>
+
+5. 此时本地修改一下代码push测试一下（也可以点击立即构建测试），点击本次触发的那个任务，选择控制台输出，将会看到Jenkins在云端执行的过程。<br/>
+
+6. 如果执行成功，点击项目的工作空间，将会发现多了dist和node_modules两个文件夹。
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c78ab9b46a7c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+## 实现自动化部署
+
+自动化部署可能是我们最需要的功能了，公司就一台服务器，我们可以使用人工部署的方式，但是如果公司有100台服务器呢，人工部署就有些吃力了，而且一旦线上出了问题，回滚也很麻烦。所以这一节实现一下自动部署的功能。
+
+1.首先，先在Jenkins上装一个插件Publish Over SSH，我们将通过这个工具实现服务器部署功能。<br/>
+
+2.在要部署代码的服务器上创建一个文件夹用于接收Jenkins传过来的代码，我在服务器上建了一个testjenkins的文件夹。<br/>
+
+3.Jenkins想要往服务器上部署代码必须登录服务器才可以，这里有两种登录验证方式，一种是ssh验证，一种是密码验证，就像你自己登录你的服务器，你可以使用ssh免密登录，也可以每次输密码登录，系统管理-系统设置里找到Publish over SSH这一项。<br/>
+
+重点参数说明：
+
+```
+Passphrase：密码（key的密码，没设置就是空）
+Path to key：key文件（私钥）的路径
+Key：将私钥复制到这个框中(path to key和key写一个即可)
+
+SSH Servers的配置：
+SSH Server Name：标识的名字（随便你取什么）
+Hostname：需要连接ssh的主机名或ip地址（建议ip）
+Username：用户名
+Remote Directory：远程目录（上面第二步建的testjenkins文件夹的路径）
+
+高级配置：
+Use password authentication, or use a different key：勾选这个可以使用密码登录，不想配ssh的可以用这个先试试
+Passphrase / Password：密码登录模式的密码
+Port：端口（默认22）
+Timeout (ms)：超时时间（毫秒）默认300000
+```
+
+配置完成后，点击Test Configuration测试一下是否可以连接上，如果成功会返回success，失败会返回报错信息，根据报错信息改正即可。
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7bb52a7713be?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" >
+
+4. 接下来进入我们创建的任务，点击构建，增加2行代码，意思是将dist里面的东西打包成一个文件，因为我们要传输。
+
+```
+cd dist&&
+tar -zcvf dist.tar.gz *
+```
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7bf8fa29ec6d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+5. 点击构建后操作，增加构建后操作步骤，选择send build artificial over SSH， 参数说明：<br/>
+
+```
+Name:选择一个你配好的ssh服务器
+Source files ：写你要传输的文件路径
+Remove prefix ：要去掉的前缀，不写远程服务器的目录结构将和Source files写的一致
+Remote directory ：写你要部署在远程服务器的那个目录地址下，不写就是SSH Servers配置里默认远程目录
+Exec command ：传输完了要执行的命令，我这里执行了解压缩和解压缩完成后删除压缩包2个命令
+```
+
+<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7c7caf0713f5?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+6. 现在当我们在本地将Welcome to Your Vue.js App修改为Jenkins后发出一个git push，过一会就会发现我们的服务器上已经部署好了最新的代码，是不是很6
   
