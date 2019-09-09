@@ -186,6 +186,7 @@ Exec command ：传输完了要执行的命令，我这里执行了解压缩和�
 <img src="./img/11.png">
 
 这里我们不用E-mail Notification，因为它的邮件服务功能太少，无法自定义邮件内容及自定义触发钩子，而且只能在异常情况下才能发邮件。我们使用Editable Email Notification这个。
+
 <br/>
 要是用别的厂家的邮箱服务就查下别的邮箱厂家smtp怎么配，用qq邮箱的除了user Name和password其他的和我写一样就行。另外password写的不是qq邮箱的密码，而是开启smtp服务后发短信获取的密码
 <br/>
