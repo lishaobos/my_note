@@ -13,7 +13,7 @@ Jenkins是一个开源软件项目，是基于Java开发的一种持续集成工
 ## 安装 java 环境
 
 1.rpm 包下载地址<br/>
-https://www.oracle.com/java/technologies/jdk8-downloads.html
+<a href="https://www.oracle.com/java/technologies/jdk8-downloads.html" target="_blank" >
   
 2.安装命令<br/>
 rpm -ivh 包
@@ -25,7 +25,7 @@ java -version
 ## 安装 Jenkins 
 
 1.下载 Java 的 war 包<br/>
-https://www.oracle.com/java/technologies/jdk8-downloads.html
+<a href="https://www.oracle.com/java/technologies/jdk8-downloads.html" target="_blank">
 
 2.启动 Jenkins<br/>
 
@@ -177,5 +177,24 @@ Exec command ：传输完了要执行的命令，我这里执行了解压缩和�
 
 <img src="./img/10.png">
 
-6. 现在当我们在本地将Welcome to Your Vue.js App修改为Jenkins后发出一个git push，过一会就会发现我们的服务器上已经部署好了最新的代码，是不是很6
+6. 现在当我们在本地修改代码提交到对应分支，就会自动部署到服务器
+
+## 实现提交后邮件提醒
+
+以QQ邮箱举例，设置 => 账户
+
+<img src="./img/11.png">
+
+这里我们不用E-mail Notification，因为它的邮件服务功能太少，无法自定义邮件内容及自定义触发钩子，而且只能在异常情况下才能发邮件。我们使用Editable Email Notification这个。
+<br/>
+要是用别的厂家的邮箱服务就查下别的邮箱厂家smtp怎么配，用qq邮箱的除了user Name和password其他的和我写一样就行。另外password写的不是qq邮箱的密码，而是开启smtp服务后发短信获取的密码
+<br/>
+
+<img src="./img/12.png">
+
+<img src="./img/13.png">
+
+<img src="./img/14.png">
+
+然后就可以收到邮件了，结束。
   
