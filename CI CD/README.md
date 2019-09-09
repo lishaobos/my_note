@@ -67,23 +67,23 @@ java -jar jenkins.war
 
 1.选择刚才创建的任务，选择配置中的源码配置，按下图配置
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4b63c9152782?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/1.png">
 
 2.安装Generic Webhook Trigger Plugin插件（系统管理-插件管理-搜索Generic Webhook Trigger Plugin）如果可选插件列表为空，点击高级标签页，替换升级站点的URL为：http://mirror.xmission.com/jenkins/updates/update-center.json并且点击提交和立即获取。
 
 3.添加触发器<br/>
 第2步安装的触发器插件功能很强大，可以根据不同的触发参数触发不同的构建操作，此次是根据不同分支提交部署到不同服务器。在任务配置里勾选Generic Webhook Trigger，添加请求变量
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4c36ea15b935?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/2.png">
 
 4.配置 git hook
-
-<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4cfe042bba32?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 
 URL格式为 http://<User ID>:<API Token>@<Jenkins IP地址>:端口/generic-webhook-trigger/invoke <br/>
 userid和api token在jenkins的系统管理-管理用户-admin-设置里。
   
-<img src="https://user-gold-cdn.xitu.io/2018/4/14/162c4d8b530af3a0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/3.png">
+
+<img src="./img/4.png">
 
 5.测试 hook
 
@@ -106,11 +106,11 @@ git push触发钩子后，jenkins就要开始工作了，自动化的构建任�
 
 2.打开刚刚的jenkins任务，点击配置里面的构建环境，勾选这个，并指定一个node版本。<br/>
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7726c4fc17ba?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/5.png">
 
 3.点击构建，把要执行的命令输进去，多个命令使用&&分开（切记最后一行不用 &&）。<br/>
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7771ae212268?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/6.png">
 
 4. 保存。<br/>
 
@@ -118,7 +118,7 @@ git push触发钩子后，jenkins就要开始工作了，自动化的构建任�
 
 6. 如果执行成功，点击项目的工作空间，将会发现多了dist和node_modules两个文件夹。
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c78ab9b46a7c6?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/7.png">
 
 ## 实现自动化部署
 
@@ -152,7 +152,7 @@ Timeout (ms)：超时时间（毫秒）默认300000
 
 配置完成后，点击Test Configuration测试一下是否可以连接上，如果成功会返回success，失败会返回报错信息，根据报错信息改正即可。
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7bb52a7713be?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" >
+<img src="./img/8.png" >
 
 4. 接下来进入我们创建的任务，点击构建，增加2行代码，意思是将dist里面的东西打包成一个文件，因为我们要传输。
 
@@ -161,7 +161,7 @@ cd dist&&
 tar -zcvf dist.tar.gz *
 ```
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7bf8fa29ec6d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/9.png">
 
 5. 点击构建后操作，增加构建后操作步骤，选择send build artificial over SSH， 参数说明：<br/>
 
@@ -173,7 +173,7 @@ Remote directory ：写你要部署在远程服务器的那个目录地址下，
 Exec command ：传输完了要执行的命令，我这里执行了解压缩和解压缩完成后删除压缩包2个命令
 ```
 
-<img src="https://user-gold-cdn.xitu.io/2018/4/15/162c7c7caf0713f5?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<img src="./img/10.png">
 
 6. 现在当我们在本地将Welcome to Your Vue.js App修改为Jenkins后发出一个git push，过一会就会发现我们的服务器上已经部署好了最新的代码，是不是很6
   
