@@ -25,7 +25,7 @@ java -version
 ## 安装 Jenkins 
 
 1.下载 Java 的 war 包<br/>
-https://www.oracle.com/java/technologies/jdk8-downloads.html
+http://mirrors.jenkins.io/war-stable/latest/jenkins.war
 
 2.启动 Jenkins<br/>
 
