@@ -69,6 +69,8 @@ java -jar jenkins.war
 
 <img src="./img/1.png">
 
+<img src="./img/1-1.png">
+
 2.安装Generic Webhook Trigger Plugin插件（系统管理-插件管理-搜索Generic Webhook Trigger Plugin）如果可选插件列表为空，点击高级标签页，替换升级站点的URL为：http://mirror.xmission.com/jenkins/updates/update-center.json并且点击提交和立即获取。
 
 3.添加触发器<br/>
