@@ -759,17 +759,20 @@ let store = new vuex.Store({
     component: () => import ('./components/......')
   2.webpack推荐（这种写法最后一个参数，如果有组件一样，那么这两个组件就会打包成一个js文件，如果都不一样，就和第一个方法是一样的）
     component: (resolve) => require.ensure([],() => resolve(require('./components/......')),'xx')
+  
+  顺便说说全局注册一个组件和局部引用一个组件的区别。
+  1.只是命名空间的不同，打包之后的体积是一样的。
+  2.不同的情况在于，如果你使用路由的懒加载，然后这个路由的页面中引入了组件，那么虽然打包体积是一样的，但是你只有请求这个路由，这个组件的资源才会被请求过来。
 
-对于vue 父组件调用子组件的 methods
-  例如：<children ref="ccc" /> //这个是引入的子组件
-        然后在父组件中 this.$refs.ccc.yo() 就ok了 yo是子组件的方法
-子组件调用父组件的方法
-  在子组件中 this.$parent.father()   father是父组件的方法
+  对于vue 父组件调用子组件的 methods
+    例如：<children ref="ccc" /> //这个是引入的子组件
+          然后在父组件中 this.$refs.ccc.yo() 就ok了 yo是子组件的方法
+  子组件调用父组件的方法
+    在子组件中 this.$parent.father()   father是父组件的方法
 
-//下面这个方法里面是一个回调函数，意思是在dom渲染完成之后，我们在回调函数中执行我们想要做的事情
-this.$nextTick( () => {
-
-} )
+  //下面这个方法里面是一个回调函数，意思是在dom渲染完成之后，我们在回调函数中执行我们想要做的事情
+  this.$nextTick( () => {
+  } )
 
 对于 ref 
 1.如果绑定的是普通元素
@@ -959,7 +962,7 @@ module.exports = {
         target:'http://111.111:80', //这个代表所有 /api 开头的请求都被代理到这个地址（可以根据下面的 node 全局环境变量变化）
         changeOrigin:true, //这个得开启
         pathRewrite:{
-          '/api':'' //这个是api代理请求之后 把 /api 变为空，请求里面就没有 /api 了
+          '/api':'' //这个是api代理请求之后 把 /api 变为空，请求里面就没有 /api 了,
         }
       }
     }
