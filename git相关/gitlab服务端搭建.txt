@@ -101,6 +101,7 @@
 ## 遇到的坑
     1.有些命令启动不了得加 sudo
     2.给 nginx 添加配置，如果复制进去有换行符那些，nginx 会报错，不行就在里面手动敲一遍。
+    3.kill 是杀不死 nginx 的进程的，因为 gitlab-ctl 守护进程会启动 nginx（gitlab-ctl stop nginx #这个命令可以杀死进程）
 
 
 
