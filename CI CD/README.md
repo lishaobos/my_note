@@ -78,6 +78,87 @@ java -jar jenkins.war
 
 <img src="./img/2-1.png">
 
+3.1 添加多个请求参数的触发器<br/>
+因为涉及到多个项目的提交，如果是同一个 gitlab 站点发出的请求，那么如果分支名称是一样的话都会触发任务，所以下面记录一下多个参数判断。<br/>
+参考网站：https://blog.csdn.net/xlgen157387/article/details/76216351
+
+<img src="./img/2-2.png">
+
+<img src="./img/2-3.png">
+
+这里面的参数都是可以自定义的，想用哪个用哪个，gitlab 的请求体参数如下，我们可根据喜好来进行选择判断。
+
+```
+{
+  "object_kind": "push",
+  "event_name": "push",
+  "before": "c39640d756f5b6d2e23978dea8c9b1ebacf6c616",
+  "after": "e224ba380f7371c55535dd4fb300e28a8d4488ea",
+  "ref": "refs/heads/dev",
+  "checkout_sha": "e224ba380f7371c55535dd4fb300e28a8d4488ea",
+  "message": null,
+  "user_id": 2,
+  "user_name": "gengziyi",
+  "user_username": "gengziyi",
+  "user_email": "",
+  "user_avatar": "http://192.168.2.86:9527/uploads/-/system/user/avatar/2/avatar.png",
+  "project_id": 1,
+  "project": {
+    "id": 1,
+    "name": "yun",
+    "description": "云岫",
+    "web_url": "http://192.168.2.86:9527/root/yun",
+    "avatar_url": null,
+    "git_ssh_url": "git@192.168.2.86:root/yun.git",
+    "git_http_url": "http://192.168.2.86:9527/root/yun.git",
+    "namespace": "Administrator",
+    "visibility_level": 0,
+    "path_with_namespace": "root/yun",
+    "default_branch": "master",
+    "ci_config_path": null,
+    "homepage": "http://192.168.2.86:9527/root/yun",
+    "url": "git@192.168.2.86:root/yun.git",
+    "ssh_url": "git@192.168.2.86:root/yun.git",
+    "http_url": "http://192.168.2.86:9527/root/yun.git"
+  },
+  "commits": [
+    {
+      "id": "e224ba380f7371c55535dd4fb300e28a8d4488ea",
+      "message": "rigui\n",
+      "timestamp": "2019-09-16T01:19:37Z",
+      "url": "http://192.168.2.86:9527/root/yun/commit/e224ba380f7371c55535dd4fb300e28a8d4488ea",
+      "author": {
+        "name": "lj7788",
+        "email": "lj7788@126.com"
+      },
+      "added": [
+
+      ],
+      "modified": [
+        "vue.config.js"
+      ],
+      "removed": [
+
+      ]
+    }
+  ],
+  "total_commits_count": 1,
+  "push_options": {
+  },
+  "repository": {
+    "name": "yun",
+    "url": "git@192.168.2.86:root/yun.git",
+    "description": "云岫",
+    "homepage": "http://192.168.2.86:9527/root/yun",
+    "git_http_url": "http://192.168.2.86:9527/root/yun.git",
+    "git_ssh_url": "git@192.168.2.86:root/yun.git",
+    "visibility_level": 0
+  }
+}
+```
+
+
+
 4.配置 git hook
 
 URL格式为 http://<User ID>:<API Token>@<Jenkins IP地址>:端口/generic-webhook-trigger/invoke <br/>
