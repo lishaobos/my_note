@@ -111,7 +111,7 @@ java -jar jenkins.war
   
   3.将公钥加入对应的仓库中
   
-  <img src="./1-1.png" />
+  <img src="./img/1-1.png" />
   
   4.查看已生成的私钥
   
@@ -150,11 +150,11 @@ java -jar jenkins.war
   6.配置Jenkins的认证
   进入Jenkins>凭据>全局凭据>添加凭据，类型选择SSH Username with private key，Private Key中输入第5步中查看的私钥。
   
-  <img src="./1-2.png" />
+  <img src="./img/1-2.png" />
   
   7.配置工程中Git - Repositories
   
-  <img src="./1-3.png" />
+  <img src="./img/1-3.png" />
 
 2.安装Generic Webhook Trigger Plugin插件（系统管理-插件管理-搜索Generic Webhook Trigger Plugin）如果可选插件列表为空，点击高级标签页，替换升级站点的URL为：http://mirror.xmission.com/jenkins/updates/update-center.json 并且点击提交和立即获取。
 
