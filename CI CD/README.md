@@ -69,6 +69,93 @@ java -jar jenkins.war
 
 <img src="./img/1.png">
 
+1-1.上面一步是基于 HTTP clone 代码，现在再说一下基于 SSH clone 代码
+  1.在 jenkins 的服务器上生成密钥
+  
+  ```
+  [root@localhost ~]# 
+  [root@localhost ~]# ssh-keygen -t rsa
+  Generating public/private rsa key pair.
+  Enter file in which to save the key (/root/.ssh/id_rsa): 
+  Enter passphrase (empty for no passphrase): 
+  Enter same passphrase again: 
+  Your identification has been saved in /root/.ssh/id_rsa.
+  Your public key has been saved in /root/.ssh/id_rsa.pub.
+  The key fingerprint is:
+  SHA256:+N6gWcIIyb3E+76SVSsGbQ9kMKcQuKaGU1PhSPFiVAw root@localhost.localdomain
+  The key's randomart image is:
+  +---[RSA 2048]----+
+  | .E*=o.          |
+  |.o =o+o          |
+  | .+.++           |
+  |.+o=. +..        |
+  |+.+.+o.+S.       |
+  |+. o =+.o        |
+  |..  ++o.+        |
+  |    o. * o       |
+  |     o*.. .      |
+  +----[SHA256]-----+
+  [root@localhost ~]# 
+  ```
+  
+  2.查看已经生成的公钥
+  
+  ```
+  [root@localhost ~]# cd ~/.ssh
+  [root@localhost .ssh]# ls
+  id_rsa  id_rsa.pub  known_hosts
+  [root@localhost .ssh]# cat id_rsa.pub 
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBdDhTl2rgoOAQ+86yOpBTI37BPgL/DI6R2oHogZ1ll+njsv4Pq4q3hoqupN7xEXeRyz1RFb9Ckqf4s2d0FEUMWMvAtCyfcidZOzH83tzQhXmqdnTfGwIZ3/ql82RB+VgQSmH+FkXXb+oOI5wtzK382LDTMXEgv1X3X/UYc4YpjlS9Fqcymg48f14QD2Hneo8dSDKfUdKRNG+VeC870vKm5LmBLI1GEbXcTSY2pFoT901RouUx3BahOs9PHsQ9jjCfVFQWLFF4wRyqNxzLVN0u+bezWOZfdnowFTNaqHOlQUPdTa+13ni8eNmCHgKtGs3+XUNnn8uomneK0Ysi2VPh root@localhost.localdomain
+  [root@localhost .ssh]# 
+  ```
+  
+  3.将公钥加入对应的仓库中
+  
+  <img src="./1-1.png" />
+  
+  4.查看已生成的私钥
+  
+  ```
+  [root@localhost .ssh]# cat id_rsa
+  -----BEGIN RSA PRIVATE KEY-----
+  MIIEowIBAAKCAQEAwXQ4U5dq4KDgEPvOsjqQUyN+wT4C/wyOkdqB6IGdZZfp47L+
+  D6uKt4aKrqTe8RF3kcs9URW/QpKn+LNndBRFDFjLwLQsn3InWTsx/N7c0IV5qnZ0
+  3xsCGd/6pfNkQflYEEph/hZF12/qDiOcLcyt/Niw0zFxIL9V91/1GHOGKY5UvRan
+  MpoOPH9eEA9h53qPHUgyn1HSkTRvlXgvO9LypuS5gSyNRhG13E0mNqRaE/dNUaLl
+  MdwWoTrPTx7EPY4wn1RUFixReMEcqjccy1TdLvm3s1jmX3Z6MBUzWqhzpUFD3U2v
+  td54vHjZgh4CrRrN/l1DZ5/LqJp3itGLItlT4QIDAQABAoIBAFdcwMMfMijW/dkt
+  nh5mzB5/fRKPipLbfNbpMplpT0c932Xww0MYWMCghahw1C1RkgnJGpuvknvh9vEd
+  M678KGJ3ByyzMSOgTZzCWsSzcEzKujL847KNY9mDiJHA5JnWnKperPot3MR5yd0w
+  v6r/L+NriA8X2NrNDWl1cB3mrcO9tg5u+B5igVxLkSBLgqzJ7fzqphoDvFTBld8a
+  +GflRWmOByN540DUhmIU+UfSy9kBPghvZ7rfDgQEjTuCO13NWYPTqTofXukV0UtY
+  I0Z6snayvJBh3lG2UfzUfMs5JI/v3UsPR5dftOLGHCkoRJskTr1hAquAjK8WGg3B
+  5xRxwnECgYEA3+FS5crZPf3yxfwY4kTVOWmlgwlBVb9z4K8KM5xgeU8IxLeI32Kx
+  /ls7QNyIFh5o+nqnoJxU8Ce4E5jNngAI81ClradIyQVQ5+60z95Q5CHhP5B/hDMt
+  dxfnwpyMxm+n/NJXO3UhgDKQjh8dREzf4kiNrmHSHLYM73FHzRGbN7cCgYEA3TVn
+  Cr54iawVHEhxyOEge/GhwpwsLmnDya2lGpB8W6rMakYVhZdTnSbOVDxauFF6Doa7
+  vgIB1OXIwFkTm2SlY1s7SXvtdD2zB/xNEGx2ULaw2dFHEwxPWKpxGj83QQrvJGsT
+  FFIc8m2ClPN8WgIuct/9Umol6PBiNBgM+GGk4ScCgYANYX0/6MDVOLFi7e9azrxj
+  wxG2ZD44bsnxOuUEMqt9dKDUiRewKkjzJ+bBuKyVjdm+ZshQDCfzdpxE55QahmwC
+  huZwG5h5E01Dn3vFFMeG6xN4Zh2I/DoSbSZX9l1fmtrSfIvkLNsEu4DyTZ/FLkcP
+  UkDNlGEngCYDxaSB+DRrvwKBgQCjPaRz1kmHdzkA7Skiz5e0P4Va4vrrqVs1enIr
+  n1JWJz3Ac0WwlxK6FwgOO5fLCz1ieOUU+9A0Nvolj9abRvOR1aJzwQNjU6DJlNOd
+  +hx5xcfOhdTIZr4rNWRPtTTmR9Zgbq/ewBXihRPnLaOnnJKAbXE4n2KoerRNsy3n
+  Ic+V4wKBgFBDiH27x0gW8O75gqyvPY/B73r1I7laBLkL9/vLJKgAW2dk6F60RNYL
+  OtvIeVn130O1HJ3O5YCyrSqHymwoqc3Fqy++xst9ZwaGKNBgflITWG5bn0t/+Abm
+  Qq1Lh1g6WrIjk3XzWCbSuoRSD9elbU8HWCKRpU200G79Q845joJk
+  -----END RSA PRIVATE KEY-----
+  [root@localhost .ssh]# 
+  ```
+  
+  6.配置Jenkins的认证
+  进入Jenkins>凭据>全局凭据>添加凭据，类型选择SSH Username with private key，Private Key中输入第5步中查看的私钥。
+  
+  <img src="./1-2.png" />
+  
+  7.配置工程中Git - Repositories
+  
+  <img src="./1-3.png" />
+
 2.安装Generic Webhook Trigger Plugin插件（系统管理-插件管理-搜索Generic Webhook Trigger Plugin）如果可选插件列表为空，点击高级标签页，替换升级站点的URL为：http://mirror.xmission.com/jenkins/updates/update-center.json 并且点击提交和立即获取。
 
 3.添加触发器<br/>
