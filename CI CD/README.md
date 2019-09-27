@@ -69,7 +69,7 @@ java -jar jenkins.war
 
 <img src="./img/1.png">
 
-1-1.上面一步是基于 HTTP clone 代码，现在再说一下基于 SSH clone 代码
+1-1.上面一步是基于 HTTP clone 代码，现在再说一下基于 SSH clone 代码<br/>
   1.在 jenkins 的服务器上生成密钥
   
   ```
