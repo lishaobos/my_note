@@ -432,7 +432,7 @@
         }
     3.当 try catch 语句发生错误时，浏览器会认为错误已经被处理了，因而不会抛出错误
     
-    *** websocket
+*** websocket
   说明：首先，同源策略对 websocket 是不生效的，因此可以通过他来连接到任何站点，至于是否会与某个域的页面通信，则完全取决于服务器。
        使用标准的 HTTP 服务器无法实现 websocket，只有支持这种协议的专门服务器才能正常工作，由于 websocket 使用了自定义的协议，
        所以 url 也是不一样的，未加密的链接不是 http:// 而是 ws:// 加密的不是 https:// 而是 wss:// 
@@ -528,3 +528,84 @@
     2.import 是在编译时调用， reuqire 时运行时调用，所以 import 得放在开头，require 可以放在任何地方
     3.import 现在浏览器大多没有实现，所以现在一般项目中的 import 最后还是得编译成 require
     4.require 在引用基础数据类型的时候是赋值，引用复杂数据类型，比如是对象，数组，都是浅拷贝（注意注意）
+
+
+*** dom 渲染时机
+    说明：浏览器中执行 js 和 ui 渲染是两个引擎，两个是不会共同进行的，经过测试发现 dom 修改后不会立即渲染，而是会等到 js 的执行栈空了之后
+    进行渲染，是在事件队列的 microTask 和 macroTask 之前进行渲染的，而且 dom 短时间内修改多次，浏览器会集中在一起执行，不会一次次的渲染，
+    因为 dom 操作一般都伴随 repaint 和 reflow ，所以代价是很昂贵的。
+
+    1.代码：
+    function task (time){
+        let start = new Date().getTime();
+        do{
+            var end = new Date.getTime();
+        }while( end - start >= time)
+        console.log( time );
+    }
+    setTimeout( _ => {
+        console.log('开始');
+        document.body.style.background = 'pink';
+        task(5000);
+        console.log('结束');
+    },1000)
+    结果：
+        1.输出 开始
+        2.浏览器空转 5s，输出 5
+        3.输出 结束
+        4.dom 渲染
+    结论：执行栈不为空的时候 dom 不会渲染
+
+    2.代码：
+    function task (time){
+        let start = new Date().getTime();
+        do{
+            var end = new Date.getTime();
+        }while( end - start >= time)
+        console.log( time );
+    }
+    setTimeout( _ => {
+        console.log('开始');
+        document.body.style.background = 'pink';
+        setTimeout( _ => {
+            task(5000)
+        },0)
+        task(5000);
+        console.log('结束');
+    },1000)
+    结果：
+        1.输出 开始
+        2.浏览器空转 5s，输出 5
+        3.输出 结束
+        4.dom 渲染
+        5.浏览器空转 5s，输出 5
+    结论：dom 在 macroTask 执行前，执行栈为空时渲染
+
+    3.代码：
+    function task (time){
+        let start = new Date().getTime();
+        do{
+            var end = new Date.getTime();
+        }while( end - start >= time)
+        console.log( time );
+    }
+    setTimeout( _ => {
+        console.log('开始');
+        document.body.style.background = 'pink';
+        new Promise( (resolve,reject) => {
+            setTimeout( _ => {
+                resolve('pro');
+            } ,5000)
+        },0)
+        task(5000);
+        console.log('结束');
+    },1000)
+    结果：
+        1.输出 开始
+        2.浏览器空转 5s，输出 5
+        3.输出 结束
+        4.dom 渲染
+        5.浏览器空转 5s
+    结论：dom 在 microTask 执行前，执行栈为空时渲染
+
+    
