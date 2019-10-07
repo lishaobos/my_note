@@ -113,7 +113,12 @@
         调用完成之后获取表单对象里面的文件，做自己想做的事情就行了
      
      10.关于 vue 打包优化问题
-        1.cdn 的引用
+        1.使用打包分析器
+            1.yarn add webpack-bundle-analyzer
+            2.去看官方使用方法
+            3.yarn build 
+         
+        2.cdn 的引用
         vue.config.js中 vue 提供了 configureWebpack 对象，这个对象就是 webpack 的配置项。
         打包配置例子：
             configureWebpack:{
@@ -128,7 +133,18 @@
             在打包的时候 webpack 会检索全局中的 key 模块，替换成 value 所对应的全局变量。
             2.Vue.use('')，这种注册就得注释掉了.
             3.cdn 引入放在 实例化 vue 的元素下面，打包的时候依赖包会往 body 里面追加，就在我们 cdn 的下面。
-            
+        延伸：我们还得考虑到万一 CDN 失效，我们项目的何去何从，因为 CDN 会提供全局变量供我们使用，所以我们就根据全局变量来进行判断
+            例如：  
+                //这个就简单判断了 element cdn 失效的时候，我们引入自己服务器上的资源。
+                if(!window.ELEMENT){
+                    let el = document.createElement('script');
+                    el.src = '自己服务器啊上的资源地址';
+                    div.appendChild(el); //div 是我们 app 实例下面放一个 div
+                }
+        
+        3.gzip 压缩
+
+
       
       10.1.关于vue打包后第一次访问面临的白屏问题
         解决方法，因为 spa 页面所要加载的文件太多，会导致 Vue 实例实例化不能迅速完成，所以就在网上随便找了个css动画，把css引入或者写在
