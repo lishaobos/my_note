@@ -1,0 +1,26 @@
+{
+    "eslint.enable": true, // 是否开启检测
+    "eslint.autoFixOnSave": true,
+    "files.associations": {
+      "*.vue": "vue"
+    },
+    "eslint.options": {
+      "extensions": [
+          ".js",
+          ".vue"
+      ]
+    },
+    "eslint.validate": [
+      "javascript",{
+          "language": "vue",
+          "autoFix": true
+      },
+      "html",
+      "vue"
+    ],
+    "git.ignoreMissingGitWarning": true,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.fontSize": 14,
+    "window.zoomLevel": -1
+}
