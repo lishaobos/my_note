@@ -25,3 +25,7 @@
             proxy_pass http://example.com:7001/;
         }
     }
+    3.一些配置参数
+    server {
+        client_max_body_size  10m; #上传文件大小的限制
+    }
