@@ -985,12 +985,23 @@ module.exports = {
   }
 }
 
+**关于 Vue 里面自动引入组件的解决办法（这个其实是 webpack 的方法）
+   const path = require("path");
+   const files = require.context("./components", false, /\.vue$/); //参数依次是 检索路径，是否检索子集，正则
+   const modules = {};
+   files.keys().forEach(key => {
+     const name = path.basename(key, ".vue"); // name 就得到了模块名字
+     modules[name] = files(key).default || files(key); //得到模块，可以解构到 components
+   });
+
 **关于 vue 配置生产环境或者开发环境时候的问题 
   1.process 对象
     该对象是在 node 环境中一个 global 对象，控制 node 进程，他对于 node 应用程序始终是可用的，所以不需要 require
   2.process.env.NODE_ENV 会是"development"、"production" 或 "test" 中的一个。具体的值取决于应用运行的模式。（axios 可以根据这个来设置 baseUrl）
   3.process.env.BASE_URL 和 publicPath 对应，设置这个就会改变我们部署的基础路径
   4.process.env.VUE_APP_* 还提供了这么个格式的变量，* 是我们能改的东西
+  5.新想法：
+      请求前缀前部变成 /api ，全部在 nginx 做代理就行了
 
 
 ***关于 axios 
