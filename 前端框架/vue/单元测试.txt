@@ -22,4 +22,5 @@ Test runner-提供运行环境：
     1.istanbul。
 
 
-    vue-test-utils
+需要用到的插件：
+    1.vue-test-utils。
