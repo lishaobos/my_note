@@ -1,0 +1,25 @@
+#本页面记录一下关于 vue 的单元测试
+
+测试框架-帮助我们测试：
+    1.jest-基于jasmine，对react友好。
+    2.jasmine-bdd风格，自带assert和mock。
+    3.Mocha-适合node，没有浏览器环境。
+    4.Qunit-出自jQuery，后来独立出来。
+
+断言库-断言结果是多少：
+    1.Chai-支持所有风格，全面。
+    2.should。
+    3.expect。
+    4.Assert-node环境直接使用。     
+
+Mock库-提供模块模拟：
+    1.sinon
+
+Test runner-提供运行环境：
+    1.karma
+
+覆盖率工具：
+    1.istanbul。
+
+
+    vue-test-utils
