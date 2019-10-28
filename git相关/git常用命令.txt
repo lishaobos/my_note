@@ -36,6 +36,21 @@ git checkout master (选中主分支)
 git merge xx (先选中主分支，然后执行就是合并分支，xx为分支名字)
 git pull (拉取远程仓库，并且跟新本地)
 
+关于 tag 的使用
+说明：记录一个稳定的版本，和之后的开发分割开来。
+命令：
+      1.git tag //查看所有 tag
+      2.git tag -l v1.* //查看v1开头的版本
+      3.git tag v1.0 //创建轻量级 tag，这样创建的tag没有附带其他信息
+      4.git tag -a v1.0 -m '描述信息' //添加有描述信息的 tag
+      5.git show v1.0 //查看 v1.0 版本的 tag 详细信息
+      6.git tag -d v1.0 //删除 v1.0 tag，这个是删除本地 tag
+      7.git push origin :refs/tags/v1.0 //删除远程tag，确定先执行了第 6 步
+      8.git push origin --tags //git push的时候，tag是不会上传到服务器的,只有这样才行
+      9.给之前提交的记录添加 tag
+            1.git log //查看提交日志
+            2.git tag -a v1.18a5cbc2
+
 对于 git 回滚到固定版本
 1.git log //查看日志
 2.git reset --hard 版本号
