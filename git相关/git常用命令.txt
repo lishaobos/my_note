@@ -46,10 +46,13 @@ git pull (拉取远程仓库，并且跟新本地)
       5.git show v1.0 //查看 v1.0 版本的 tag 详细信息
       6.git tag -d v1.0 //删除 v1.0 tag，这个是删除本地 tag
       7.git push origin :refs/tags/v1.0 //删除远程tag，确定先执行了第 6 步
-      8.git push origin --tags //git push的时候，tag是不会上传到服务器的,只有这样才行
-      9.给之前提交的记录添加 tag
+      8.git push origin v1.0 //提交 v1.0 这个 tag
+      9.git push origin --tags //git push的时候，tag是不会上传到服务器的,只有这样才行，这个是提交所有 tag
+      10.git checkout -b v1.0 test //拉取 v1.0 这个 tag，并且创建到 test 分支，建议这样拉取 tag
+      10.给之前提交的记录添加 tag
             1.git log //查看提交日志
-            2.git tag -a v1.18a5cbc2
+            2.git tag -a v666 id名称 -m 'tag 描述信息'
+            3.git push origin v666 //提交 v666 tag  
 
 对于 git 回滚到固定版本
 1.git log //查看日志
