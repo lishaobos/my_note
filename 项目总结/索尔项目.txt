@@ -56,7 +56,9 @@
                 parmas:{},
                 responseType:'blob'
             })
-          这样就不用进行下面创建一个 blob 对象的操作，也不用全局修改 responseType，直接返回回来的数据就是 blob 对象格式的
+          这样就不用进行下面创建一个 blob 对象的操作，也不用全局修改 responseType，直接返回回来的数据就是 blob 对象格式的,同样发现一个东西，
+          以前配置的全局配置都是可以写在每个请求参数里面的，例：
+            axios.post('xxx',{params:{},timeout:666}) //get 和原始请求是可以这样写，post 不知道配置放在哪里
         2.let blob = new Blob([流],{type:'application/vnd.ms-excel'})
         3.let a = document.createElement('a'); a.href = URL.createObjectURL(blob);
         4.a.download = '小雨'; //下载的文件名字
