@@ -27,7 +27,7 @@ git的安装和使用
 git diff read.txt (这个是看修改的具体内容)
 git log (可以看我们的修改日志)
 cat read.txt (看文件的内容)
-git reset-哈尔的 HEAD^ (恢复到上一个版本)
+git reset--hard HEAD^ (恢复到上一个版本)
 git branch xx  (xx是我们创建的分支的分支名字)
 git branch  (这个是看我们所有的分支)
 git branch -r (查看远程分支)
@@ -35,6 +35,14 @@ git checkout -b xx  (xx是分支名字，语句的mean创建加切换)
 git checkout master (选中主分支)
 git merge xx (先选中主分支，然后执行就是合并分支，xx为分支名字)
 git pull (拉取远程仓库，并且跟新本地)
+
+关于优雅的提交代码记录
+1.合并本地多次 commit 为 1 次
+      1.git log //查看 commit 日志
+      2.git rebase -i 日志id //意思就是后面的几个 commit 全部合并到这个 commit 上面
+      3.suqash 意思是会合并到上一个 commit，pick 意思是执行这个 commit，操作完保存
+      4.把 This is a combination... 到 Plase enter... 之间的全部删除掉，然后可以在其中加入一些文字，文字就是 commit 的内容
+      5.git push
 
 关于 tag 的使用
 说明：记录一个稳定的版本，和之后的开发分割开来。
