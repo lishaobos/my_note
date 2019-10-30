@@ -44,6 +44,11 @@ git pull (拉取远程仓库，并且跟新本地)
       4.把 This is a combination... 到 Plase enter... 之间的全部删除掉，然后可以在其中加入一些文字，文字就是 commit 的内容
       5.git push
 
+git stash 的使用
+      1.有时候切换分支，会提醒要提交本地修改到本地仓库，但是又不想增加一个 commit 记录，所以执行  git stash save '暂存'
+      2.git stash list //查看暂存列表
+      3.git stash pop //恢复最新的暂存，并且删除掉暂存列表里面的记录
+
 关于 tag 的使用
 说明：记录一个稳定的版本，和之后的开发分割开来。
 命令：
