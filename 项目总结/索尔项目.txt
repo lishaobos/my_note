@@ -51,6 +51,12 @@
     5.1 关于后台传来 excel 流，前台下载流文件。
         1.axios 的 responseType:'arraybuffer' // responseType提供选项（'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'）默认是 json，
         要不然传过来的 excel 文件流会乱码。
+        1.1 之前是在 axios 实例配置 responseType，现在才发现有更简单的方法，例：
+            axios.get('xxx',{
+                parmas:{},
+                responseType:'blob'
+            })
+          这样就不用进行下面创建一个 blob 对象的操作，也不用全局修改 responseType，直接返回回来的数据就是 blob 对象格式的
         2.let blob = new Blob([流],{type:'application/vnd.ms-excel'})
         3.let a = document.createElement('a'); a.href = URL.createObjectURL(blob);
         4.a.download = '小雨'; //下载的文件名字
