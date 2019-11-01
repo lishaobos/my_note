@@ -1,0 +1,37 @@
+# 本文件用于讲解前端代码开发及提交规范
+
+1.代码书写规范管理
+    1.使用 eslint # 在代码校验文件夹里面有讲解
+2.git commit 提交管理
+    1.安装 husky # yarn -D husky
+    2.在 package.json 里面 
+        1.写入：
+        # 此配置适合 dependencies 平级
+          "husky": {
+                "hooks": {
+                # 这个是 commit 之前要执行的命令，目前这个命令是在 eslint 官网的命令，作用是 commit 之前 eslint 检测，检测失败不允许 commit
+                "pre-commit": "eslint --ext .js,.vue src", 
+                # 这个就是官方写的，复制进来就行了
+                "commit-msg": "commitlint -E HUSKY_GIT_PARAMS" 
+                }
+            }
+    3.创建 commitlint.config.js # 和 package.json 平级
+        0.官网：# https://commitlint.js.org/#/
+        1.安装依赖包 # yarn -D @commitlint/{cli,config-conventional}
+        2.写入部分规则
+            module.exports = {
+                "extends": ['@commitlint/config-conventional'], // => commitlint/config-conventional
+                # 这里面的就是 commit 提交必须有的前缀，例如 git commit -m 'fuck: 啦啦啦' ,更多规则去官网查看
+                "rules": {
+                    "type-enum": [2, "always", [
+                        'feat',
+                        'fix',
+                        'docs',
+                        'style',
+                        'refactor',
+                        'test',
+                        'revert',
+                        'fuck'
+                    ]]
+                }
+            };            
