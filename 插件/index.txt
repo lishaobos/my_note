@@ -1,1 +1,13 @@
-��˹��
+### 本页面用于收集各种好用的插件和组件 
+
+## Vue
+    1.v-viewer
+        说明：此组件是预览图片的组件
+    2.socket.io-client 
+        说明：此组件是前端组件，需要后台配合使用 socket.io，他可以处理兼容性，如果 websocket 不支持，会变为 commet 长连接
+
+## 通用
+    1.storybook
+        说明：此应用用于编写前端 ui组件 文档
+    2.vuePress
+        活命：此应用用于编写前端文档
