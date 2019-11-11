@@ -66,6 +66,7 @@ git stash 的使用
             1.git log //查看提交日志
             2.git tag -a v666 id名称 -m 'tag 描述信息'
             3.git push origin v666 //提交 v666 tag  
+      11.如果要修改某个特定版本的 tag，先拉下来特定 tag，然后删除远程的 tag，把本地拉下来的代码 push ，tag 名字是原来的就行
 
 对于 git 回滚到固定版本
 1.git log //查看日志
