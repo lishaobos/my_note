@@ -388,11 +388,24 @@
             2.a.dataset // 123
     15.数组的一些操作方法的细节点
         1.for in 循环是不可逆的，让 i-- 也是无济于事的，只有原始的 let i =0; i<10; i++ 这种循环是可逆的。   
-        1.1 反向 for 循环，如果有 splice 操作，是不用 i++;正向循环还得 i--;
-        2.map 和 forEach 都是不可停止的，是不可以退出的，而且在这俩函数里面对数组 push 或者其他，map 和 forEach 循环次数是不改变的。
-        3.map 和 forEach 可以通过抛出错误来停止他，但如果这样，map 是没有任何返回的。
-        3.map 和 forEach 里面如果是数组对象结构，修改对象是奏效的。 例如：var a = [{num:123}] a.map( _ => _.num = 666)
-        4.find 和 filter 方法如果是对于数组对象结构，里面返回的也是内存地址指向，修改返回的对象，对原有的数据是可以改变的。
+        2 反向 for 循环，如果有 splice 操作，是不用 i++;正向循环还得 i--;
+        3.map 和 forEach 都是不可停止的，是不可以退出的，而且在这俩函数里面对数组 push 或者其他，map 和 forEach 循环次数是不改变的。
+        4.map 和 forEach 可以通过抛出错误来停止他，但如果这样，map 是没有任何返回的。
+        5.map 和 forEach 里面如果是数组对象结构，修改对象是奏效的。 例如：var a = [{num:123}] a.map( _ => _.num = 666)
+        6.map 的第二个参数是提供给回调函数的 this 值
+        7.find 和 filter 方法如果是对于数组对象结构，里面返回的也是内存地址指向，修改返回的对象，对原有的数据是可以改变的。
+        8.some 和 every 方法是可以中断的，前者 return true，后者 return false
+        9.Array.includes() 该函数和 Array.indexOf() 都是判断是否包含这个元素,前者返回 Boolean 值
+        10.数组的扁平化
+            1.Array.flat() 直接可以扁平,但存在兼容问题
+            2.利用 reduce 和 concat 简单递归
+                注: concat 方法里面的参数,会把第一层不论是数组还是单个,全部展开,数组里面的数组就不行了
+                function flatten(ary) {
+                    return ary.reduce((pre, cur) => {
+                        return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
+                    }, []); // 这个空数组是提供给回调函数的初始值,可以不选
+                }
+
     16.判断 dom 元素的坐标
         1.dom.getBoundingClientRect() //返回当前 dom 元素距离视窗的各个坐标
         2.dom.getClientRects() //如果是块级元素，和第一个方法返回的是一样，如果是内联元素，例如：
