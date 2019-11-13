@@ -2,9 +2,33 @@
 
 ## Vue
     1.v-viewer
-        说明：此组件是预览图片的组件
+        说明：此插件是预览图片的组件
     2.socket.io-client 
-        说明：此组件是前端组件，需要后台配合使用 socket.io，他可以处理兼容性，如果 websocket 不支持，会变为 commet 长连接
+        说明：此插件是前端组件，需要后台配合使用 socket.io，他可以处理兼容性，如果 websocket 不支持，会变为 commet 长连接
+    3.postcss-px-to-viewport
+        说明: 此插件是针对移动端开发,可以自动把 px 转为 vw 单位,达到所有设备视窗适配,详细配置去看官网
+        使用:
+            # in vue.config.js
+            module.exports = {
+                css: {
+                    loaderOptions: {
+                        postcss: {
+                            plugins: loader => [
+                            require('postcss-px-to-viewport')({
+                                viewportWidth: 750,
+                                unitPrecision: 6,
+                                minPixelValue: 1,
+                                viewportUnit: 'vw',
+                                fontViewportUnit: 'vw',
+                                mediaQuery: false,
+                                selectorBlackList: ['html', 'body'],
+                                exclude: /node_modules/
+                            })
+                            ]
+                        }
+                    }
+                }
+            }
 
 ## 通用
     1.storybook
