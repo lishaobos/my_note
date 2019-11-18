@@ -356,6 +356,7 @@
             是在元素的作用域中运行，也就是说程序中的 this 引用当前元素，这个时候最骚的东西出现了，箭头
             函数依旧那么牛皮。
     7.hashchange 事件是 url # 后面的字符串变化会触发的事件
+    
     8.如果不采用事件委托，就要给每个元素绑定事件执行函数，因为函数是对象，如果有数不清的元素需要添加事件，
       因为对象会占用内存，对象越多，页面越卡，所以还是能用事件委托就用
     
@@ -380,6 +381,20 @@
         7、目标地点：drop事件，拖放的目标元素，其他元素被拖放到本元素中,就是鼠标拖动点在本元素中，然后松开
       7.注意
         目标地点若要触发 drop ，必须他的 dragover 事件里面阻止浏览器默认行为
+      8.dataTransfer 对象
+        说明：此对象可以保存被拖动的元素的数据，它可以保存一项或多项数据、一种或多数数据类型。通谷一点讲，就是可以通过它来传输被拖动              的数据，以便在拖拽结束的时候，对数据进行其他的操作。
+        方法：
+            1.设置
+                document.getElementById('source').ondragstart = function (event) {
+                    event.dataTransfer.setData('some-key', 'some-value');
+                };
+            2.获取
+                document.getElementById('target').ondrop = function(event){
+                    event.preventDefault(); // 拖动的默认处理方式是在新窗口打开，所以阻止其执行
+                    let value = event.dataTransfer.getData('some-key');
+                    // some-value
+                }
+        
     10.auxclick 是鼠标右击事件
       1.回顾一波事件
         window 的 contextmenu 事件里面有三种阻止右键菜单的方法，并且在这个事件里你可以自己搞个右键菜单出来
@@ -406,7 +421,20 @@
         7.find 和 filter 方法如果是对于数组对象结构，里面返回的也是内存地址指向，修改返回的对象，对原有的数据是可以改变的。
         8.some 和 every 方法是可以中断的，前者 return true，后者 return false
         9.Array.includes() 该函数和 Array.indexOf() 都是判断是否包含这个元素,前者返回 Boolean 值
-        10.数组的扁平化
+        10.iterator 数组迭代玩法
+            1.for of 循环是可以解构循环的
+                例：
+                    let arr = [{name:123}]
+                    for(let {name} of arr){
+                        console.log(name) //123 
+                    }
+            2.for of 循环配合 数组的 entries 函数
+                例：
+                    let arr = [{name:123}]
+                    for(let [{name},index] of arr){
+                        console.log(name,index) //123,0 
+                    }
+        11.数组的扁平化
             1.Array.flat() 直接可以扁平,但存在兼容问题
             2.利用 reduce 和 concat 简单递归
                 注: concat 方法里面的参数,会把第一层不论是数组还是单个,全部展开,数组里面的数组就不行了
@@ -415,6 +443,7 @@
                         return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
                     }, []); // 这个空数组是提供给回调函数的初始值,可以不选
                 }
+         
 
     16.判断 dom 元素的坐标
         1.dom.getBoundingClientRect() //返回当前 dom 元素距离视窗的各个坐标
