@@ -36,6 +36,14 @@ git checkout master (选中主分支)
 git merge xx (先选中主分支，然后执行就是合并分支，xx为分支名字)
 git pull (拉取远程仓库，并且跟新本地)
 
+5.关于远程分支
+      1.git checkout -b dev 创建本地分支
+      2.git push origin dev:dev 以 dev 分支拷贝，创建远程分支 dev
+      3.git branch -d dev 删除本地 dev 分支，建议不要在当前分支删除自己，若要 -d 变成 -D
+      4.git push origin -d dev 删除远程 dev 分支
+      5.git reflog 同样作用于回复删除后后悔的分支
+
+
 关于优雅的提交代码记录
 1.合并本地多次 commit 为 1 次
       1.git log //查看 commit 日志
