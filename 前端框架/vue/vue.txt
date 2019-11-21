@@ -910,6 +910,13 @@ let store = new vuex.Store({
 
 关于 Vue nextTick
   此方法是在执行栈为空的时候执行，也就是 dom 渲染的时候进行，可拿到渲染之后的 dom
+  
+关于 Vue 渲染机制
+   例：
+      <template>
+         <div>
+         </div>
+      </template>
 
    
 关于 $event
