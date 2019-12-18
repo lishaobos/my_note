@@ -868,7 +868,7 @@ let store = new vuex.Store({
          3.this.arr[index].showAlert = true; this.arr = Object.assign({}, this.arr); # 这个有点日晷
          4.set的对象的值或者数组的值都会覆盖之前的
             
-对于Vue的provide
+关于 Vue 的provide
    例子：export default {
             name:'我是爸爸',
             provide(){
@@ -888,6 +888,21 @@ let store = new vuex.Store({
      ***总结  
           对于更深层次的孙子组件那些，这样可以访问到顶上组件的参数，但是经过使用，子组件的参数是无法根据父组件的数据随时变化，官网上说的是
           传入可坚挺的对象可以监测到变化，目前还没有实现。
+
+关于 Vue 的 inheritAttrs $attrs $listeners
+   1.inheritAttrs
+      说明：该属性是默认是 true，如果设置为 false 的话，在父容器中子组件定义的属性，例如：
+            # 父组件
+            <div>
+               <childs sex='1'>
+            </div>
+           子组件中没有用 props 接收的，在 dom 中是不显示这个 sex 的，默认 dom 上是有的
+   2.$attrs
+      说明：该属性用于高阶组件，假设我们父组件向孙子组件传参，一般情况下是 props 传递下去，这个展示的是父组件在子组件上定义的参数列表，不包含
+            props 里面接受的参数，但是父组件在子组件上定义 v-bind='$attrs' 孙子组件中 props 接受就可以，就不用中间存了，这个可以无限往下传递
+   3.$linsteners
+      说明：该属性用于高阶组件，和 $attrs 类似，也是不用 $emit 传递事件，只要 v-on='$listeners' 孙子组件直接 emit 就行了
+            
 
 关于 Vue 的 mixins
    1.mystyle.js
