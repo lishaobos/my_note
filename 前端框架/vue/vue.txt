@@ -1047,3 +1047,102 @@ httpRequest.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 # 在响应的时候，如果身份验证过期，可以 router.push('/login') # 这个虽然没有挂载到 Vue 上，但是这样是可以使用的
+
+
+
+***Vue 深入检出总结
+
+  Vue总的来说可以分为4个阶段
+    1.初始化阶段
+      1.new Vue
+      2.初始化 Event lifecycle
+      3.beforeCreate
+      4.初始化 injections reacitivity
+      5.created
+    2.模板编译阶段
+      1.是否有el选项，没有使用$mount(el)
+      2.是否有temalate选项 ? 3 : 4
+      3.通过template选项获取模板
+      4.通过el选项获取模板
+      5.将模板编译为渲染函数
+    3.挂载阶段
+      1.beforeMount
+      2.创建vm.$el替换el
+      3.mounted
+    4.已挂载
+      1.beforeRouteUpdate
+      2.使用虚拟dom重新渲染
+      3.update
+    4.卸载阶段（当vm.$destory被调用）
+      1.beforeDestory
+      2.卸载依赖追踪，子组件与事件监听器
+      3.destoryed
+
+  数据变化侦测到相应总结：
+    1.通过闭包和递归策略，Objet进行递归处理，每一个key使用闭包配合Object.definproperty进行处理，Array不同的一点是建立拦截函数
+    2.主要涉及的依赖存储和依赖更新
+  
+  虚拟dom：
+    说明：Vue从原来的细粒度变为中等粒度，变成了以组件为单位观察的策略，减少了很多watcher观测，也就减少了很多内存开销
+    1.VNode
+      说明：节点描述对象，是一个javascript对象
+      类型：
+        1.注释节点
+        2.文本节点
+        3.元素节点
+        4.组件节点
+        5.函数式组件
+        6.克隆节点
+      总结：
+        由于Vue采用了虚拟dom来更新视图，当属性变化的时候，真个组件都要进行重新渲染的操作，但是组件内并不是所有的dom节点都要进行更新，所以将VNode缓存，并将上一次缓存的oldVNode进行对比，
+        只对需要更新的部分进行dom操作也可以提升很高的性能
+
+    2.patch：
+      说明：进行新增，删除，更新VNode，目前没看懂算法，是虚拟dom的核心算法
+      总结：
+        通过patch对比新旧两个虚拟dom，对只需要更新的节点进行更新
+  
+  模板编译：
+    1.解析器
+      1.使用正则将模板解析成AST语法树
+      2.举例：
+        <div>
+          <p>{{ name }}</p>
+        </div>
+        转为AST的样子：
+          {
+            tag:'div',
+            type:1,
+            static:false,
+            children:[
+              {
+                tag:'p',
+                type:1,
+                static:false,
+                children:[
+                  {
+                    type:2,
+                    text:'{{ name }}',
+                    static:false,
+                    expression:'_s(name)'
+                  }
+                ]
+              }
+            ]
+          }
+    2.优化器
+      说明：存在一些静态的节点，永远都不需要重新渲染，所有找出来他们，只渲染一次
+      1.找出所有的静态节点且标记
+      2.找出所有的静态根节点且标记
+    3.代码生成器
+      说明：通过AST语法树转为渲染函数的内容，内容也就是代码字符串，通过包装函数执行字符串，也就成了我们的渲染函数
+      转化的样子如下：
+        _c('div',{ attrs: { id: 'el' }, [ _c('div', [ _c('p') ] ) ] } )
+      总结：是一个大数组
+
+
+
+
+
+
+    
