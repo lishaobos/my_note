@@ -886,8 +886,7 @@ let store = new vuex.Store({
             inject:['yo'] # 这个就是爷爷的东西
          }
      ***总结  
-          对于更深层次的孙子组件那些，这样可以访问到顶上组件的参数，但是经过使用，子组件的参数是无法根据父组件的数据随时变化，官网上说的是
-          传入可坚挺的对象可以监测到变化，目前还没有实现。
+          如果想让孙子组件内保持响应，那么可以传入响应式的对象，比如再父组件 data 里面定义的某个对象
 
 关于 Vue 的 inheritAttrs $attrs $listeners
    1.inheritAttrs
@@ -903,6 +902,17 @@ let store = new vuex.Store({
    3.$linsteners
       说明：该属性用于高阶组件，和 $attrs 类似，也是不用 $emit 传递事件，只要 v-on='$listeners' 孙子组件直接 emit 就行了
             
+关于 Vue 的 extend
+   使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象，data 选项是特例，需要注意 - 在 Vue.extend() 中它必须是函数
+   1.上面的官网的说法，简单来说：
+      1.写一个组件
+      2.import demo from './demo'
+      3.let conponents = Vue.extend(demo)
+      4.let instance = new conponents({
+         el: document.create('dev') 
+        })
+      5.当然第4步也可以 $mont 或者 el 选项提供某个dom 的 id
+      6.然后就可以写我们自己的 $alert $confirm 等等，挂载到 Vue 对象上供全局使用 
 
 关于 Vue 的 mixins
    1.mystyle.js
