@@ -42,3 +42,29 @@ module.exports = {
   }
 }
 ```
+
+## 如何本地部署
+
+注：网上的教程全部落后了
+
+1. 先安装 docker
+
+2. 安装 docker-compose <a href='https://github.com/getsentry/onpremise'>文档地址</a>
+注：网上用 pip 安装，还有官网推荐的安装真是一大堆错误，累死个人
+
+目前可用的：
+  1. curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  2. 若第一步还失败，只能网上找到安装包直接下载下来，手动上传到服务器
+  3. chmod +x /usr/local/bin/docker-compose
+
+3. git clone https://github.com/getsentry/onpremise.git 
+
+4. ./install.sh
+
+5. 第 4 步执行完成之后会提示 docker-compose up -d ，执行就行了，这个是开启 sentry 服务
+
+6. docker-compose run --rm web upgrade 创建一个用户 
+
+7. docker-compose run --rm web createuser 如果上一步没有弹出提示创建 superadmin 就执行这个
+
+
