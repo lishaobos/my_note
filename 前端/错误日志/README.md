@@ -49,11 +49,11 @@ module.exports = {
 
 1. 先安装 docker
 
-2. 安装 <a href='https://github.com/getsentry/onpremise'>docker-compose</a>
+2. 安装 <a href='https://github.com/getsentry/onpremise'>docker-compose</a><br/>
 注：网上用 pip 安装，还有官网推荐的安装真是一大堆错误，累死个人，安装方法如下：
-  2-1. curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-  2-2. 若第一步还失败，只能网上找到安装包直接下载下来，手动上传到服务器
-  2-3. chmod +x /usr/local/bin/docker-compose
+  - curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+  - 若第一步还失败，只能网上找到安装包直接下载下来，手动上传到服务器
+  - chmod +x /usr/local/bin/docker-compose
 
 ### 克隆下来文件
 3. git clone https://github.com/getsentry/onpremise.git 
