@@ -43,6 +43,8 @@
         说明：可以方便调试移动端
     5.sentry
         说明：收集错误日志，没有平台限制，极其好用
+    6.sortableJs
+        说明：轻松拖拽
         
 ## vscode
     1.csscomb
