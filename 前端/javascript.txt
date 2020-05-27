@@ -394,7 +394,14 @@ hover() 相当于以前的hover效果
                   a()这种执行 this 还是指向的是 window 对象
                   
  ***ES6中的一部分东西
-    1.箭头函数
+    1.let 和 const
+        1.例子：
+              for (let i = 0; i < 3; i++) {
+                let i = 'fuck'
+                console.log(i)
+              }
+              上面不会报错，因为 for 循环相当于两层作用域，小括号和大括号，所以 let i 是不会报错的
+    2.箭头函数
         1.函数体内没有 this，只能从外层继承,因为没有 this，所以也不可以作为构造函数，new 对象就是不可以的。
         2.不可以使用 arguments对象。
         3.不可以使用 yield
