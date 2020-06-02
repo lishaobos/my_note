@@ -45,11 +45,9 @@ module.exports = {
 
 ## 如何本地部署
 
-注：网上的教程全部落后了
-
 1. 先安装 docker
 
-2. 安装 <a href='https://github.com/getsentry/onpremise'>docker-compose</a>
+2. 安装 <a href='https://github.com/docker/compose/releases/download/1.23.0-rc3/docker-compose-Linux-x86_64'>docker-compose</a>
   - 网上用 pip 安装，还有官网推荐的安装真是一大堆错误，累死个人，安装方法如下：
   - curl -L https://get.daocloud.io/docker/compose/releases/download/1.25.5/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
   - 若第一步还失败，只能网上找到安装包直接下载下来，手动上传到服务器
