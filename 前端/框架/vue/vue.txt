@@ -1150,6 +1150,31 @@ httpRequest.interceptors.request.use(function (config) {
         _c('div',{ attrs: { id: 'el' }, [ _c('div', [ _c('p') ] ) ] } )
       总结：是一个大数组
 
+    
+    组件更新策略：
+
+    说明：
+          自从 Vue 更新粒度变成以组件为粒度，每个组件都对应有一个 watcher，在 render 的时候， window.target 置为当前组件，此时组件中每个 vNode 读取数据的时候都会把当前组件的 watcher 增加到依赖中，
+          每次更新数据会通知整个组件更新，子组件只会在所依赖的参数更新时才会更新
+
+          子组件更新注意：
+
+            // 父组件 arr 不更新，子组件不会重新更新
+            <children :arr='arr' />
+
+            // 父组件数据变更重新渲染，子组件取 arr 每次都是一个新的数组里面包装的依赖，所以子组件会随着父组件更新而更新
+            <children :arr='[arr]' />
+
+            // 此情况因为 computed 会缓存结果，所以每次父组件更新，若子组件依赖没更新，子组件就不会更新
+            <children :arr='arr_' />
+            computed: {
+                arr_ () {
+                    return [this.arr]
+                }
+            }
+    
+    
+
 
 
 
