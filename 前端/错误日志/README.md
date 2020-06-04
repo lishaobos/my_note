@@ -57,7 +57,7 @@ module.exports = {
 git clone https://github.com/getsentry/onpremise.git 
 
 ### 4.按照官网说明执行
-./install.sh
+./install.sh // 注意先关闭防火墙，再启动 docker ，现在不用手动执行第 6，7步
 
 ### 5.开启 sentry 服务
 docker-compose up -d // 此命令只能在 onpremise 文件下使用，对应的 docker-compose down 是关闭服务
