@@ -1,0 +1,146 @@
+## Yeoman
+
+### 安装步骤
+
+```
+// 全局范围安装 yo
+yarn global add yo
+
+// 安装对应的 Generator
+yarn global add generator-node
+
+mkdir my-test
+
+cd my-test
+
+// 通过 yo 运行 Generator
+yo node 
+
+```
+
+---
+
+### 生成 Sub-Generator
+
+说明：针对已有项目中添加特定的文件
+
+
+```
+// 例子 (yo generrator名称:sub-generatro 名称)
+yo node:cli
+
+// 添加模块到全局范围
+yarn link
+
+// 运行模块命令
+my-test --help
+
+```
+
+---
+
+### Yeoman 使用步骤总结
+
+- 1.明确需求
+
+- 2.找到合适的 Generator
+
+- 3.全局范围安装 Generator
+
+- 4.通过 yo 运行对应的 Generator
+
+- 5.通过命令行填写选项
+
+- 6.生成需要的项目结构
+
+---
+
+### 创建 Generator
+
+- 创建 Generator 模块本质上就是创建一个 NPM 模块
+
+- 注意： Generator 模块必须是 generator-(name) 这种格式
+
+#### Generator 基本结构
+
+```
+project
+│—— generators/  ········· 生成器目录
+|    │
+|    └─── app/  ··········· 默认生成器目录
+│       │
+│       └─── index.js  ··· 默认生成器实现
+│   
+└── package.json  ········ 模块包配置文件
+```
+
+#### Generator 准备其他 sub-generator
+
+```
+project
+│—— generators/  ········· 生成器目录
+|    │
+|    └─── app/  ··········· 默认生成器目录
+│    |  │
+│    |  └─── index.js  ··· 默认生成器实现
+|    |  
+|    └─── component/  ··· 其他生成器目录
+|        │
+│        └─── index.js  ··· 其他生成器实现
+│   
+└── package.json  ········ 模块包配置文件
+```
+
+#### 创建示例
+
+```
+mkdir generator-fuck
+
+cd generator-fuck
+
+yarn init
+
+// 安装一个生成 generator 的基类
+yarn add yeoman-generator
+
+// 然后创建文件生成 Generator 基本结构
+
+// 添加模块命令到全局
+yarn link
+
+// 随便创建一个文件夹
+mkdir demo
+
+cd demo
+
+// 运行刚才创建的 Generator 命令
+yo fuck
+```
+
+---
+
+### 发布 Generator
+
+```
+// 创建一个 git 仓库，拉到本地
+
+// 进入文件，发布
+yarn publish
+
+```
+
+## Plop
+
+说明：针对已有项目中添加特定的文件
+
+### 基本使用
+
+- 1.将 plop 模块作为项目开发依赖安装
+
+- 2.在项目根目录下创建一个 plopfile.js 文件
+
+- 3.在 plopfile.js 文件中定义脚手架任务
+
+- 4.编写用于生成特定类型文件的模板
+
+- 5.通过 plop 提供的 cli 运行脚手架任务
