@@ -105,6 +105,23 @@ yarn add yeoman-generator
 
 // 然后创建文件生成 Generator 基本结构
 
+// 继承 class Generator 里面的方法按照下面顺序运行
+1.initializing -您的初始化方法（检查当前项目状态，获取配置等）
+
+2.prompting-在提示用户输入选项的地方（您要致电的地方this.prompt()）
+
+3.configuring-保存配置并配置项目（创建.editorconfig文件和其他元数据文件）
+
+4.default -如果方法名称与优先级不匹配，它将被推送到该组。
+
+5.writing -在其中写入生成器特定文件（路由，控制器等）的位置
+
+6.conflicts -处理冲突的地方（内部使用）
+
+7.install -运行安装的位置（npm，凉亭）
+
+8.end-最后一次打扫，打扫，说再见等
+
 // 添加模块命令到全局
 yarn link
 
