@@ -1,0 +1,10 @@
+{
+  "name": "generator-fuck",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Leon",
+  "license": "MIT",
+  "dependencies": {
+    "yeoman-generator": "^4.10.1"
+  }
+}
