@@ -18,7 +18,14 @@ module.exports = class extends Generator {
                 name: "cssLoader",
                 message: "请选择你的 css 预处理器",
                 choices: ['less', 'sass'],
-                default: 'sass' // Default to current folder name
+                default: 'sass'
+            },
+            {
+                type: "list",
+                name: "color",
+                message: "请选择背景颜色",
+                choices: ['pink', 'blue', 'yellow'],
+                default: 'pink'
             }
         ])
     }

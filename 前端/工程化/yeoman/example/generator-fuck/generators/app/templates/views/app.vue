@@ -1,15 +1,19 @@
 <template>
     <div>
-        sp 页面
+        <%= name %> 页面
     </div>
 </template>
 
 <script>
 export default {
-    name: ''
+    name: '<%= name %>'
 }
 </script>
 
 <style lang="<%= cssLoader === 'sass' ? 'scss' : cssLoader %>">
+
+    div {
+        background-color: <%= color %>;
+    }
 
 </style>
