@@ -254,6 +254,17 @@ App.vue是我们的根组件  组件里面包含 1.模板 2.行为  3.样式
     2.在父组件找到传参的子组件 在标签上面写 v-on:snake="yo($event)"  yo是我们在父组件中定义的函数 $event是系统提供的接收参数的变量
     3.在父组件的 yo函数中就能拿到传过来的参数  我们就可以传给其他小组件或者为自己所用
 
+监听组件的生命周期
+```
+// 监听自己的生命周期钩子
+this.$on('hook:destoryed', () => {
+    console.log(123)
+})
+
+// 监听子组件的生命周期钩子
+<child @hook:created='fnc' />
+```
+
 只要我们vue对象数据变化 我们template就会重新渲染  如果我们之前在模板里  {{ yo }} 这样执行了方法，那么他就会再次执行
 如果我们 yo方法里面改变了data里的东西  就会不断执行 yo 函数   所以得注意
 
@@ -906,8 +917,8 @@ let store = new vuex.Store({
    使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象，data 选项是特例，需要注意 - 在 Vue.extend() 中它必须是函数
    1.上面的官网的说法，简单来说：
       1.写一个组件
-      2.import demo from './demo'
-      3.let conponents = Vue.extend(demo)
+      2.import demo from './demo' // 这个 demo 是一个有组件选项的对象
+      3.let conponents = Vue.extend(demo) // 这个 components 是一个组件的构造函数
       4.let instance = new conponents({
          el: document.create('dev') 
         })
@@ -1032,6 +1043,7 @@ module.exports = {
   4.process.env.VUE_APP_* 还提供了这么个格式的变量，* 是我们能改的东西
   5.新想法：
       请求前缀前部变成 /api ，全部在 nginx 做代理就行了
+
 
 
 ***关于 axios 
