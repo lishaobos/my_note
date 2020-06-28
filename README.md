@@ -20,20 +20,20 @@
 
 #### 自动化部署
 
-- [Jenkins-自动化部署](./前端/工程化/部署/Jenkins/README.md)
+- [Jenkins-自动化部署](./前端/工程化/自动化/部署/Jenkins/README.md)
 
 #### 自动化构建
 
-- [简单例子](./前端/工程化/构建/demo/README.md)
-- [Gulp-自动化构建](./前端/工程化/构建/demo-gulp/README.md)
-- [Webpack-自动化构建](./前端/工程化/构建/demo-vue-cli/README.md)
+- [简单例子](./前端/工程化/自动化/构建/demo/README.md)
+- [Gulp-自动化构建](./前端/工程化/自动化/构建/demo-gulp/README.md)
+- [Webpack-自动化构建](./前端/工程化/自动化/构建/demo-vue-cli/README.md)
 
 
 ---
 
 ### 前端插件
 
-- [插件集合](./plugin.md)
+- [插件集合](./前端/plugin.md)
 
 ---
 
