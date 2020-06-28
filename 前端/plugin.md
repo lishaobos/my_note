@@ -72,7 +72,7 @@
 ### Plugin
 ```
 1.clean-webpack-plugin
-    说明：
+    说明：删除文件用的
 2.html-webpack-plugin
     说明：主要解析 html
 3.copy-webpack-plugin
