@@ -24,7 +24,7 @@
 
 #### 自动化构建
 
-- [简单例子](./前端/工程化/自动化/构建/demo/README.md)
+- [简单例子](./前端/工程化/自动化/构建/demo)
 - [Gulp-自动化构建](./前端/工程化/自动化/构建/demo-gulp/README.md)
 - [Webpack-自动化构建](./前端/工程化/自动化/构建/demo-vue-cli/README.md)
 
