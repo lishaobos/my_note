@@ -15,18 +15,18 @@
 
 #### 创建脚手架
 
-- [YEOMAN](./前端/工程化/yeoman/README.md)
-- [PLOP](./前端/工程化/plop/README.md)
+- [YEOMAN](./前端/工程化/yeoman)
+- [PLOP](./前端/工程化/plop)
 
 #### 自动化部署
 
-- [Jenkins-自动化部署](./前端/工程化/自动化/部署/Jenkins/README.md)
+- [Jenkins-自动化部署](./前端/工程化/自动化/部署/Jenkins)
 
 #### 自动化构建
 
 - [简单例子](./前端/工程化/自动化/构建/demo)
-- [Gulp-自动化构建](./前端/工程化/自动化/构建/demo-gulp/README.md)
-- [Webpack-自动化构建](./前端/工程化/自动化/构建/demo-vue-cli/README.md)
+- [Gulp-自动化构建](./前端/工程化/自动化/构建/demo-gulp)
+- [Webpack-自动化构建](./前端/工程化/自动化/构建/demo-vue-cli)
 
 
 ---
