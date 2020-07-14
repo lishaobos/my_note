@@ -43,8 +43,16 @@
 
 ---
 
-## git
+## Git
 
-- [git 常用命令](./git相关/git命令.md)
+- [Git 常用命令](./git相关/git命令.md)
 
-- [搭建本地 gitlab](./git相关/gitlab.md)
+- [搭建本地 GitLab](./git相关/gitlab.md)
+
+---
+
+## Linux
+
+- [常用安装](./linux/常用安装.md)
+- [Docker](./linux/docker.md)
+- [Nginx 配置](./linux/nginx配置.md)
