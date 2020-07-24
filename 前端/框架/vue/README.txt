@@ -1,55 +1,54 @@
+# Vue
 
+el就是element 就是需要获取的元素 一定是html中的根容器
+data用于数据的存储 是个对象
+methods是写我们的方法  在方法里面直接this.name就可以取到上面data里面定义的信息
 
-
-# el就是element 就是需要获取的元素 一定是html中的根容器
-# data用于数据的存储 是个对象
-# methods是写我们的方法  在方法里面直接this.name就可以取到上面data里面定义的信息
-
-# <a v-bind:href="link">链接</a>  这种数据绑定在前面v-bind 后面属性里面直接写自定义的k值 不用大双括号
-# <div v-bind:style="{width:wid + '%'}"></div> 这样也可以绑定（当wid是我们设置的属性）
+<a v-bind:href="link">链接</a>  这种数据绑定在前面v-bind 后面属性里面直接写自定义的k值 不用大双括号
+<div v-bind:style="{width:wid + '%'}"></div> 这样也可以绑定（当wid是我们设置的属性）
 如果是<div class='a' :class='b'></div> 这种也可以，只是dom的优先级更高一点，两个class都会出现
 
-# <p v-html="html"></p>  这种就是在标签中直接插入 我们提前定好的标签
-# 在标签里面绑定事件  v-on:事件名="方法名" || @事件名="方法名" 这个方法可以不用写大双括号  因为用了事件绑定，后面的酒杯认为是方法
+<p v-html="html"></p>  这种就是在标签中直接插入 我们提前定好的标签
+在标签里面绑定事件  v-on:事件名="方法名" || @事件名="方法名" 这个方法可以不用写大双括号  因为用了事件绑定，后面的酒杯认为是方法
 
-# vue事件 里面event和我们以前一样
+vue事件 里面event和我们以前一样
 
-# 下面这些是阻止事件发生的绑定写法 
-#  例如v-on:click.stop="doThis"会执行doThis方法然后阻止双击事件  
-#  如果v-on:click.stop=""  就会直接阻止事件
+下面这些是阻止事件发生的绑定写法 
+ 例如v-on:click.stop="doThis"会执行doThis方法然后阻止双击事件  
+ 如果v-on:click.stop=""  就会直接阻止事件
 
-#  <!-- 阻止单击事件继续传播 -->
-#  <a v-on:click.stop="doThis"></a>
+ <!-- 阻止单击事件继续传播 -->
+ <a v-on:click.stop="doThis"></a>
 
-#  <!-- 提交事件不再重载页面 -->
-#  <form v-on:submit.prevent="onSubmit"></form>    prevent是阻止默认事件
+ <!-- 提交事件不再重载页面 -->
+ <form v-on:submit.prevent="onSubmit"></form>    prevent是阻止默认事件
 
-#  <!-- 修饰符可以串联 -->
-#  <a v-on:click.stop.prevent="doThat"></a>
+ <!-- 修饰符可以串联 -->
+ <a v-on:click.stop.prevent="doThat"></a>
 
-#  <!-- 只有修饰符 -->
-#  <form v-on:submit.prevent></form>
+ <!-- 只有修饰符 -->
+ <form v-on:submit.prevent></form>
 
-#  <!-- 添加事件监听器时使用事件捕获模式 -->
-#  <!-- 即元素自身触发的事件先在此处理，然后才交由内部元素进行处理 -->
-#  <div v-on:click.capture="doThis">...</div>
+ <!-- 添加事件监听器时使用事件捕获模式 -->
+ <!-- 即元素自身触发的事件先在此处理，然后才交由内部元素进行处理 -->
+ <div v-on:click.capture="doThis">...</div>
 
-#  <!-- 点击事件将只会触发一次 -->
-#  <a v-on:click.once="doThis"></a>
+ <!-- 点击事件将只会触发一次 -->
+ <a v-on:click.once="doThis"></a>
 
-#  <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
-#  <!-- 即事件不是从内部元素触发的 -->
-#  <div v-on:click.self="doThat">...</div>
-#  使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，
-#  而 v-on:click.self.prevent 只会阻止对元素自身的点击。
+ <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+ <!-- 即事件不是从内部元素触发的 -->
+ <div v-on:click.self="doThat">...</div>
+ 使用修饰符时，顺序很重要；相应的代码会以同样的顺序产生。因此，用 v-on:click.prevent.self 会阻止所有的点击，
+ 而 v-on:click.self.prevent 只会阻止对元素自身的点击。
 
 
-# 这个是键盘修饰符 可以链式操作
-#  <!-- 只有在 `keyCode` 是 13 时调用 `vm.submit()` -->
-#  <input v-on:keyup.13="submit">
+这个是键盘修饰符 可以链式操作
+ <!-- 只有在 `keyCode` 是 13 时调用 `vm.submit()` -->
+ <input v-on:keyup.13="submit">
 
-#  <!-- 只有在 `keyCode` 是 13+14 时调用 `vm.submit()` -->
-#  <input v-on:keyup.13.14="submit">
+ <!-- 只有在 `keyCode` 是 13+14 时调用 `vm.submit()` -->
+ <input v-on:keyup.13.14="submit">
    
 
 #  双向数据绑定  v-model  ref
