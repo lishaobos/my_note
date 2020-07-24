@@ -59,8 +59,8 @@ vue事件 里面event和我们以前一样
 
 若我们有一个a属性为1 然后有个盒子 v-on:click="a++" 这样同样会让vue里面的a属性变化
 
-#  methods computed watch 区别
-# methods里面只要有数据改变就会立即触发这个函数，哪怕内容没变也会再次执行函数   
+# methods computed watch 区别
+# methods里面只要有数据改变就会立即触发这个函数，哪怕内容没变也会再次执行函数
 computed利用了缓存,并且里面全是计算属性，不是方法
 
 computed是计算属性，methods是方法，都可以实现对 data 中的数据加工后再输出。
@@ -231,7 +231,7 @@ Vue.component('abc', {# 这个 abc是我们写在页面中的标签
     a标签会刷新页面，我们用vue提供的一个标签就不会发生跳转   <router-link to="#" ></router-link>  这个标签里面 tag="div" 这个属性可以把自己变成我们要的标签 
     <router-view></router-view> 这个标签写在我们的根组件内 就会产生我们使用哪个路由，页面就会显示我们哪个路由里面呈现的内容
     
-***$route对象
+*** $route对象
    该对象可以监听页面路由的变化，$route.match可以得到路由元的数组信息
 
 进入我们搭建的项目里面  index.html -> main.js(先调用根组件) -> App.vue 然后再调用其它小组件，这是大概顺序
@@ -367,7 +367,7 @@ beforeRouteLeave (to, from , next) {  这个离开守卫通常用来禁止用户
   npm run build  编译并压缩，用于生产环境   这个执行之后会有一个dist文件夹，这就是我们打包好的项目
 
 
-# 自定义钩子函数
+# 自定义指令
 我们只要在任意标签绑定    
 例如：<div v-fuck=" 'yo man' " ></div>   也可以这样写  <div v-fuck:xxx=" 'yo man' " ></div>  里面可以传对象，数组，字符串，函数不行
 上面的fuck使我们自定义钩子名称
@@ -988,10 +988,10 @@ let store = new vuex.Store({
          <div>
       </template>
       export default {
+         name:'yo',
          props:{
             list:Array 
          }
-         name:'yo'
       }
 
 
@@ -1071,7 +1071,7 @@ httpRequest.interceptors.request.use(function (config) {
 
 
 
-***Vue 深入检出总结
+***Vue 深入简出总结
 
   Vue总的来说可以分为4个阶段
     1.初始化阶段
