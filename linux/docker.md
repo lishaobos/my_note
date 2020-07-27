@@ -1,4 +1,4 @@
-## 记录一下学习 docker 的知识点
+## 记录一下学习 Docker 的知识点
 
 注：docker 或者其他的安装都去菜鸟教程里面找（https://www.runoob.com/docker/docker-tutorial.html）
 
@@ -89,3 +89,22 @@ docker cp 容器名称:/etc/nginx/nginx.conf /usr/local/nginx/conf # 把容器�
     4.看错误日志也和之前一样，tail -f error.log ，查看本地错误日志就行，因为之前映射了
 ```
 
+### Docker 安装 MySql
+
+```
+// 目前最新版本是 8.0.21
+docker pull mysql:latest
+
+// 运行 mysql
+docker run -itd --name mysql-test -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+
+// bash
+docker exec -it mysql-test bash
+mysql -u root -p
+
+// 更改密码
+alter user 'root'@'%' identified with mysql_native_password by '123456';
+
+// 刷新
+flush privileges;
+```
