@@ -13,6 +13,8 @@ docker start/restart/stop/rm 容器名称||容器Id # 启动，重启，停止�
 docker exec -it 容器名称||容器Id /bin/bash # 进入容器方便查看容器文件的路径
 docker exec -it 容器名称||容器Id /bin/sh # 以交互模式进入容器
 docker cp 容器名称:/etc/nginx/nginx.conf /usr/local/nginx/conf # 把容器下的 nginx.conf 拷贝到 /usr/local/nginx/cond 目录下
+--restart=always 这个命令在 docker run 时候加上，可以跟随 docker 自启动
+docker update --restart=always xxx 如果一开始没加，后面可以这样加
 ```
   
 ### 关于容器或者镜像的导出
