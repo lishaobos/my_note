@@ -1,0 +1,14 @@
+{
+  "name": "abstract-lp",
+  "private": false,
+  "version": "0.0.7",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "gitHead": "323ab9c79a3d81ae1b4a46bb0e07548214ad4ebe"
+}
