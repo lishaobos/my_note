@@ -33,6 +33,8 @@
         }
 4.vue-clipboard2
     说明：拷贝内容到粘贴版
+5.vuex-persistedstate
+    说明：持久化 Vuex 数据
 ```
 
 ## 通用
