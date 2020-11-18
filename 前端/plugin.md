@@ -69,6 +69,8 @@
     说明：解析引用资源地址
 2.url-loader
     说明：可自定义把引用的资源，例如图片编程 base64
+3.svg-sprite-loader
+    说明：把所有的 svg 集中管理
 ```
 
 ### Plugin
