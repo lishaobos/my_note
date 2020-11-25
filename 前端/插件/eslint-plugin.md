@@ -1,5 +1,13 @@
 # Eslint Plugin
 
+## 参考文章
+
+- 1.https://segmentfault.com/a/1190000020663729
+
+- 2.https://blog.csdn.net/OBKoro1/article/details/103411464
+
+- 3.https://juejin.cn/post/6859291468138774535
+
 ## 插件脚手架
 
 ```
