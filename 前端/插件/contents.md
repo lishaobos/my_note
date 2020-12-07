@@ -101,3 +101,16 @@
 12.compression-webpack-plugin
     说明：压缩打包文件
 ```
+
+## Rollup
+
+- [插件总集合](https://github.com/rollup/awesome)
+
+```
+1.rollup-plugin-terser
+    说明: 压缩代码
+2.rollup-plugin-delete
+    说明: 删除文件
+3.@rollup/plugin-typescript
+    说明: 编译 TS 文件
+```

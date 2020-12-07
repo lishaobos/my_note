@@ -23,4 +23,6 @@ module.exports = {
     "no-var": 2,
   }
 }
-  
+
+// TS 的校验
+https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md
