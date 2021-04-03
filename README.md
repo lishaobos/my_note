@@ -84,9 +84,10 @@
 
 ## Node
 
-- <a href='./深入浅出Node.js'>深入浅出Node.js</a>
-- [Koa](./koa.md)
-- [Sequelize](./sequelize.md)
+- [基础知识](./node/README.md)
+- <a href='./node/深入浅出Node.js'>深入浅出Node.js</a>
+- [Koa](./node/koa.md)
+- [Sequelize](./node/sequelize.md)
 
 ---
 
