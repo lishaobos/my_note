@@ -88,10 +88,11 @@
 - <a href='./node/深入浅出Node.js'>深入浅出Node.js</a>
 - [Koa](./node/koa.md)
 - [Sequelize](./node/sequelize.md)
+- [pm2](./node/pm2.md)
 
 ### 数据库
-- [mongodb](./node/mongodb.md)
-
+- [mongodb](./node/database/mongodb.md)
+- [redis](./node/database/redis.md)
 ---
 
 
