@@ -41,3 +41,8 @@ Web 性能是网站或者应用程序可感知的用户体验
 - https://www.infoq.cn/article/dxa8am44oz*lukk5ufhy
 
 - https://www.zhihu.com/question/37585246
+
+---
+
+## [请求和响应优化](./请求和响应优化.md)
+
