@@ -86,6 +86,7 @@
 ## 前端性能优化
 
 - [performance](./前端/performance/README.md)
+- [浏览器渲染原理](./前端/渲染原理.md)
 
 ---
 
