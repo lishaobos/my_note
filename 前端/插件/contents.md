@@ -52,6 +52,12 @@
     说明：收集错误日志，没有平台限制，极其好用
 6.sortableJs
     说明：轻松拖拽
+7.commander
+    说明：运行 node 命令行界面
+8.inquirer
+    说明：询问式 node 命令行界面
+9.execa
+    说明：执行脚本命令
 ```
         
 ## Vscode
