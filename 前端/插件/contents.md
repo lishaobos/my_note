@@ -35,6 +35,10 @@
     说明：拷贝内容到粘贴版
 5.vuex-persistedstate
     说明：持久化 Vuex 数据
+6.vue-grid-layout
+    说明：栅格化拖动
+7.splitpanes
+    说明：分屏拖拽
 ```
 
 ## 通用
@@ -122,3 +126,10 @@
 3.@rollup/plugin-typescript
     说明: 编译 TS 文件
 ```
+
+## Node
+
+1.commander
+    说明：命令行
+2.execa
+    说明：执行 shell 脚本
