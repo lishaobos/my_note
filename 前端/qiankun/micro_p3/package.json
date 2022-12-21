@@ -1,0 +1,23 @@
+{
+  "name": "micro_p3",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "serve": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-legacy": "^2.0.1",
+    "cheerio": "^1.0.0-rc.12",
+    "vite-plugin-dynamic-publicpath": "^1.1.2",
+    "vue": "^2.6.14",
+    "vue-router": "^3.6.3",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "devDependencies": {
+    "vite": "^3.0.9",
+    "vite-plugin-vue2": "^2.0.2"
+  }
+}

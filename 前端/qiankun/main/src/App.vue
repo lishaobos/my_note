@@ -2,6 +2,8 @@
   <div id="app">
     <router-link to='/micro_p1'>去 Pro 1</router-link>
     <router-link to='/micro_p2'>去 Pro 2</router-link>
+    <router-link to='/micro_p3'>去 Pro 3</router-link>
+    <router-link to='/micro_p4'>去 Pro 4</router-link>
     <div id="micro"></div>
   </div>
 </template>
@@ -17,4 +19,5 @@
 #app > a {
     margin-right: 20px;
 }
+
 </style>

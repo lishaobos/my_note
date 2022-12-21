@@ -2,17 +2,30 @@ import { registerMicroApps, addGlobalUncaughtErrorHandler } from 'qiankun';
 export { start } from 'qiankun'
 
 registerMicroApps([
+    // {
+    //     name: 'micro_p1',
+    //     entry: '//localhost:9527',
+    //     // entry: '//1.14.65.92:9527',
+    //     container: '#micro',
+    //     activeRule: '/micro_p1'
+    // },
+    // {
+    //     name: 'micro_p2',
+    //     entry: '//1.14.65.92:9528',
+    //     container: '#micro',
+    //     activeRule: '/micro_p2'
+    // },
     {
-        name: 'micro_p1',
-        entry: '//localhost:9527',
+        name: 'micro_p3',
+        entry: '//localhost:9529',
         container: '#micro',
-        activeRule: '/micro_p1'
+        activeRule: '/micro_p3'
     },
     {
-        name: 'micro_p2',
-        entry: '//localhost:9528',
+        name: 'micro_p4',
+        entry: '//localhost:5173',
         container: '#micro',
-        activeRule: '/micro_p2'
+        activeRule: '/micro_p4'
     }
 ])
 
