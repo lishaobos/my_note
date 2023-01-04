@@ -127,6 +127,12 @@
     说明: 编译 TS 文件
 ```
 
+## Vite
+```
+1.unplugin-vue-components
+    说明：自动导入 vue 组件
+```
+
 ## Node
 
 1.commander
