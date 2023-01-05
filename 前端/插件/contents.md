@@ -131,6 +131,8 @@
 ```
 1.unplugin-vue-components
     说明：自动导入 vue 组件
+2.unplugin-auto-import
+    说明：自动导入 API
 ```
 
 ## Node
