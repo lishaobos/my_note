@@ -39,6 +39,8 @@
     说明：栅格化拖动
 7.splitpanes
     说明：分屏拖拽
+8.pinia-plugin-persistedstate
+    说明：pinia 持久化
 ```
 
 ## 通用
