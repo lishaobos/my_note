@@ -41,6 +41,8 @@
     说明：分屏拖拽
 8.pinia-plugin-persistedstate
     说明：pinia 持久化
+9.vue-color
+    说明：选择颜色
 ```
 
 ## 通用
