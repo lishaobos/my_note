@@ -8,3 +8,6 @@
 
 3. keyof
   枚举对象的 key
+
+4. Omit
+  省去对象的某些 key
