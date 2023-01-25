@@ -14,3 +14,12 @@
 
 5. typeof
   得到数据对应 ts 声明
+
+6. Awaited
+  得到 Promise 值的类型
+
+7. Required
+  把非必要的参数转为必要
+
+8. Pick
+  只使用 interface 的某些 key
