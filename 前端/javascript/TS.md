@@ -23,3 +23,6 @@
 
 8. Pick
   只使用 interface 的某些 key
+
+9. interface Box<T>
+  interface 也可以使用泛型
