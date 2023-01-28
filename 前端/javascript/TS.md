@@ -26,3 +26,6 @@
 
 9. interface Box<T>
   interface 也可以使用泛型
+
+10. interface readonly
+  可通过 readonly 定义只读字段
