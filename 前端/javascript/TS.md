@@ -32,3 +32,43 @@
 
 11. type Box<T>
   type 也可以使用泛型
+
+12. Conditional
+
+    ```
+    // 类似于三元运算符
+    type Example1 = Dog extends Animal ? number : string;
+    type Example1 = number
+    ```
+
+    ```
+    // 多个类型一下很难写出来，但是多个会自动合并
+    interface IdLabel {
+      id: number /* some fields */;
+    }
+    interface NameLabel {
+      name: string /* other fields */;
+    }
+    
+    function createLabel(id: number): IdLabel;
+    function createLabel(name: string): NameLabel;
+    function createLabel(nameOrId: string | number): IdLabel | NameLabel;
+    function createLabel(nameOrId: string | number): IdLabel | NameLabel {
+      throw "unimplemented";
+    }
+
+    type NameOrId<T extends number | string> = T extends number ? IdLabel : NameLabel;
+    ```
+
+
+13. template
+    ```
+    type World = "world";
+    type Greeting = `hello ${World}`;
+    type Greeting = "hello world"
+
+    type EmailLocaleIDs = "welcome_email" | "email_heading";
+    type FooterLocaleIDs = "footer_title" | "footer_sendoff";
+    type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
+    type AllLocaleIDs = "welcome_email_id" | "email_heading_id" | "footer_title_id" | "footer_sendoff_id"
+    ```
