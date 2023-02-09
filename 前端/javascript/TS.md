@@ -72,3 +72,7 @@
     type AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;
     type AllLocaleIDs = "welcome_email_id" | "email_heading_id" | "footer_title_id" | "footer_sendoff_id"
     ```
+
+14. const
+  let a = 123 as const
+  a = 2 // error
