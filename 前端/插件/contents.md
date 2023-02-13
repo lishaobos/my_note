@@ -68,6 +68,8 @@
     说明：执行脚本命令
 10.mlly
     说明：获取 str 中 export 的内容
+11.bump // @jsdevtools/version-bump-prompt
+    说明：发布 npm 包
 ```
         
 ## Vscode
