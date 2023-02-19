@@ -76,3 +76,8 @@
 14. const
   let a = 123 as const
   a = 2 // error
+
+15. Record<Keys, Type>
+  定义对象 Key 值，还有其对应的值的 type
+
+16. 
