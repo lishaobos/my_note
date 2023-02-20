@@ -80,4 +80,51 @@
 15. Record<Keys, Type>
   定义对象 Key 值，还有其对应的值的 type
 
-16. 
+16. Exculde
+  type T = Exclude<"a" | "b" | "c", "a">
+  type T = 'b' | 'c'
+
+17. Extract
+  type T0 = Extract<"a" | "b" | "c", "a" | "f">
+  type T0 = "a"
+
+  type T1 = Extract<string | number | (() => void), Function>
+  type T1 = () => void
+
+18. NonNullable
+  type T0 = NonNullable<string | number | undefined>;
+  type T0 = string | number
+
+  type T1 = NonNullable<string[] | null | undefined>;
+  type T1 = string[]
+
+19. Parameters
+  type T1 = Parameters<(s: string) => void>;
+  type T1 = [s: string]
+
+20. ConstructorParameters
+  type T0 = ConstructorParameters<ErrorConstructor>;
+  type T0 = [message?: string]
+
+21. InstanceType
+  class C {
+    x = 0;
+    y = 0;
+  }
+  type T0 = InstanceType<typeof C>;
+  type T0 = C
+
+22. ThisParameterType
+    ```
+    function toHex(this: Number) {
+      return this.toString(16);
+    }
+    
+    function numberToString(n: ThisParameterType<typeof toHex>) {
+      return toHex.apply(n);
+    }
+    ```
+
+23. OmitThisParameter
+
+24. ThisType
