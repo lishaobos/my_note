@@ -107,12 +107,15 @@
   type T0 = [message?: string]
 
 21. InstanceType
+  相当于获取实例后的对象类型
+  ```
   class C {
     x = 0;
     y = 0;
   }
   type T0 = InstanceType<typeof C>;
   type T0 = C
+  ```
 
 22. ThisParameterType
     ```
