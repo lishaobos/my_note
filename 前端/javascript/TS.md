@@ -7,7 +7,18 @@
   省略对象的 key
 
 3. keyof
-  枚举对象的 key
+  枚举对象的 key，高级用法
+
+    ```
+    type A = {
+      name: string
+      age: number
+    }
+
+    type B = {
+      [key in keyof A]: A[key]
+    }
+    ```
 
 4. Omit
   省去对象的某些 key
