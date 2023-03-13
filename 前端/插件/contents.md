@@ -76,6 +76,8 @@
     说明：比 tsup 强大一点
 14.tsup
     说明：简单打包 TS 应用
+15.acron
+    说明：简单的 js parse
 ```
         
 ## Vscode
