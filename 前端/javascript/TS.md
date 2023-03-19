@@ -142,3 +142,9 @@
 23. OmitThisParameter
 
 24. ThisType
+
+
+## TS Config
+
+1. paths
+  定义模块路径，类似 @xxx/xx
