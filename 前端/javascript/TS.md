@@ -143,6 +143,14 @@
 
 24. ThisType
 
+25. 函数类型
+  函数类型定义返回 void 也可以应用于确定返回类型的函数
+  ```ts
+  type A = (...args: any[]) => void
+
+  const aaa: A = (a: string) => 123
+  ```
+
 
 ## TS Config
 
