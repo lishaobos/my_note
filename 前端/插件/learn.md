@@ -17,3 +17,5 @@ resolveId(id) {
 
 
 ## langchain
+
+给予 gpt 身体和工具
