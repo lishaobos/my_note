@@ -23,4 +23,4 @@ resolveId(id) {
 
 stable diffusion
 
-图片生成
+图片生成。
