@@ -27,3 +27,5 @@ stable diffusion
 
 Babyagi
 
+
+sad talker
