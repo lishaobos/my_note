@@ -30,4 +30,4 @@ Babyagi
 
 sad talker
 
-图片说话。
+图片说话
