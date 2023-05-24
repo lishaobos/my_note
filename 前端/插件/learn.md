@@ -34,3 +34,5 @@ sad talker
 
 
 tiptap
+
+简易聊天
