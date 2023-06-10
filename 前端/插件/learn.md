@@ -39,6 +39,6 @@ tiptap
 
 css  
 
-overflow hidden 可以让自适应宽度容器不被子元素的内容撑开，让子容器具备滚动条
+overflow hidden 可以让自适应宽度容器不被子元素的内容撑开，让子容器具备滚动条。
 
 
